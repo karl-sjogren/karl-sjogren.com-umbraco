@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/UmbracoBlog.Benchmarks/UmbracoBlog.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/UmbracoBlog.AppHost/UmbracoBlog.AppHost.csproj" />
+    <Project Path="src/UmbracoBlog.Core/UmbracoBlog.Core.csproj" />
+    <Project Path="src/UmbracoBlog.Frontend/UmbracoBlog.Frontend.csproj" />
+    <Project Path="src/UmbracoBlog.ServiceDefaults/UmbracoBlog.ServiceDefaults.csproj" />
+    <Project Path="src/UmbracoBlog.Umbraco/UmbracoBlog.Umbraco.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/UmbracoBlog.Core.Tests/UmbracoBlog.Core.Tests.csproj" />
+    <Project Path="test/UmbracoBlog.TestHelpers/UmbracoBlog.TestHelpers.csproj" />
+  </Folder>
+</Solution>
