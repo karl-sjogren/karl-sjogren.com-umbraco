@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Shorthand.UmbracoCodeFirst.Attributes;
 using UmbracoBlog.Core.Elements;
 
@@ -13,9 +12,11 @@ public partial class UmbracoBlogPostContentDataType;
 
 internal sealed class UmbracoBlogPostContentConfiguration : UmbracoEditors.BlockList.Configuration {
     public UmbracoBlogPostContentConfiguration() {
-        this.Blocks = JsonSerializer.SerializeToElement(new[] {
-            CodeBlock.ModelTypeAlias,
-            ContentBlock.ModelTypeAlias
-        });
+        BlockTypes = [
+            new(typeof(CodeBlock)) { Label = "Code block", IconColor = "#1b4e89" },
+            new(ContentBlock.ModelTypeAlias) { Label = "Content block", BackgroundColor = "#eeeeee" },
+        ];
+        UseLiveEditing = true;
+        CreateModalSize = "medium";
     }
 }

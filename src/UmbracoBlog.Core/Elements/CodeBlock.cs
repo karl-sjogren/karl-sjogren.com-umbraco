@@ -5,13 +5,14 @@ using UmbracoBlog.Core.DataTypes;
 namespace UmbracoBlog.Core.Elements;
 
 [UCFElementType("Code block", AllowInLibrary = true, Icon = UmbracoIcons.Code)]
+[UCFFolderPath("Elements")]
 public partial class CodeBlock {
     [UCFProperty("Language",
         UmbracoBlogCodingLanguageDataType.Alias)]
     public partial string Language { get; }
 
     [UCFProperty("Code",
-        UmbracoBlogCodingLanguageDataType.Alias,
+        UmbracoBlogCodeEditorDataType.Alias,
         LabelOnTop = true)]
     public partial string Code { get; }
 }

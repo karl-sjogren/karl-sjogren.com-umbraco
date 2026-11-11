@@ -6,7 +6,7 @@ namespace UmbracoBlog.Core.DataTypes;
 [UCFDataType(
     "Coding language",
     typeof(UmbracoEditors.Dropdown),
-    typeof(UmbracoBlogTextConfiguration))]
+    typeof(UmbracoBlogCodingLanguageConfiguration))]
 [UCFFolderPath("CodeFirst")]
 public partial class UmbracoBlogCodingLanguageDataType;
 

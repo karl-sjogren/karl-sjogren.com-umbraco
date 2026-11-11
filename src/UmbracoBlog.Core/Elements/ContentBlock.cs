@@ -5,6 +5,7 @@ using UmbracoBlog.Core.DataTypes;
 namespace UmbracoBlog.Core.Elements;
 
 [UCFElementType("Content block", AllowInLibrary = true, Icon = UmbracoIcons.Document)]
+[UCFFolderPath("Elements")]
 public partial class ContentBlock {
     [UCFProperty("Content",
         UmbracoBlogRichTextDataType.Alias,

@@ -4,7 +4,7 @@ namespace UmbracoBlog.Core.DataTypes;
 
 [UCFDataType(
     "Blog Tags",
-    typeof(UmbracoEditors.TextBox),
+    typeof(UmbracoEditors.Tags),
     typeof(UmbracoBlogTagsConfiguration))]
 [UCFFolderPath("CodeFirst")]
 public partial class UmbracoBlogTagsDataType;

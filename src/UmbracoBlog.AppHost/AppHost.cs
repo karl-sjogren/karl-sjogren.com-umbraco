@@ -8,6 +8,6 @@ builder
     .AddSqlServer(umbraco, "umbraco-blog-sql", "umbraco-blog-sqldb")
     .AddAzureStorage(umbraco, "umbraco-blog-storage", "umbraco-blog-media")
     .AddRedisCache(umbraco, "umbraco-blog-redis")
-    .AddBackofficeExtensions(umbraco);
+    .AddFrontendProject();
 
 builder.Build().Run();
