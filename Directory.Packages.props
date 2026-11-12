@@ -6,7 +6,7 @@
       its own fallback to stay in sync with the RuntimeHostConfigurationOption value set from the same property.
     -->
     <UmbracoAppLocalIcuVersion Condition="'$(UmbracoAppLocalIcuVersion)' == ''">72.1.0.3</UmbracoAppLocalIcuVersion>
-    <UmbracoCodeFirstVersion Condition="'$(UmbracoCodeFirstVersion)' == ''">0.0.2-alpha-62</UmbracoCodeFirstVersion>
+    <UmbracoCodeFirstVersion Condition="'$(UmbracoCodeFirstVersion)' == ''">0.0.2-alpha-63</UmbracoCodeFirstVersion>
   </PropertyGroup>
   <ItemGroup>
     <GlobalPackageReference Include="DotNet.ReproducibleBuilds" Version="2.0.5" />
