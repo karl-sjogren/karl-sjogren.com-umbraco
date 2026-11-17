@@ -5,10 +5,12 @@ using UmbracoBlog.Core.DataTypes;
 
 namespace UmbracoBlog.Core.Documents;
 
-[UCFDocumentType(
+[UCFDocument(
     "Blog Post",
     Icon = UmbracoIcons.Star,
-    AllowAsRoot = false)]
+    AllowAsRoot = false,
+    DefaultTemplateAlias = UmbracoTemplates.BlogPost,
+    AllowedTemplateAliases = new[] { UmbracoTemplates.BlogPost })]
 [UCFComposite(typeof(SeoComposite))]
 public partial class BlogPost {
     [UCFProperty(
@@ -19,6 +21,15 @@ public partial class BlogPost {
     [UCFDescription("The main heading for the blog post.")]
     [ContentTab]
     public partial string MainHeading { get; }
+
+    [UCFProperty(
+        "Publish date",
+        UmbracoBlogPublishDateDataType.Alias,
+        SortOrder = 1,
+        Mandatory = true)]
+    [UCFDescription("The editorial publish date for the blog post.")]
+    [ContentTab]
+    public partial DateTime PublishDate { get; }
 
     [UCFProperty(
         "Main content",

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Web.Common" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="Umbraco.Extensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="UMBRACO-LICENSE.txt" Pack="true" PackagePath="\" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

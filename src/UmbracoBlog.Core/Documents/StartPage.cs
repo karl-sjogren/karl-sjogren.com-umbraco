@@ -4,12 +4,13 @@ using UmbracoBlog.Core.DataTypes;
 
 namespace UmbracoBlog.Core.Documents;
 
-[UCFDocumentType(
+[UCFDocument(
     "Start Page",
     Icon = UmbracoIcons.Star,
     AllowAsRoot = true,
-    IsListView = true,
-    AllowedChildAliases = new[] { BlogPost.ModelTypeAlias })]
+    AllowedChildAliases = new[] { BlogIndex.ModelTypeAlias },
+    DefaultTemplateAlias = UmbracoTemplates.StartPage,
+    AllowedTemplateAliases = new[] { UmbracoTemplates.StartPage })]
 [UCFComposite(typeof(SeoComposite))]
 public partial class StartPage {
     [UCFProperty(

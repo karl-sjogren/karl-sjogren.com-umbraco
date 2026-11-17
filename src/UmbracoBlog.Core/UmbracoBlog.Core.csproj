@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <UmbracoCodeFirstViewsDirectory>..\UmbracoBlog.Umbraco\Views</UmbracoCodeFirstViewsDirectory>
+  </PropertyGroup>
+
   <ItemGroup>
     <Using Include="Umbraco.Cms.Core.Constants" Alias="UmbracoConstants" />
     <Using Include="Shorthand.UmbracoCodeFirst.PropertyEditors" />

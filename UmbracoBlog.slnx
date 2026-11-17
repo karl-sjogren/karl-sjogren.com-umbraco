@@ -3,6 +3,7 @@
     <Project Path="benchmarks/UmbracoBlog.Benchmarks/UmbracoBlog.Benchmarks.csproj" />
   </Folder>
   <Folder Name="/src/">
+    <Project Path="src/Shorthand.UmbracoHelpers/Shorthand.UmbracoHelpers.csproj" />
     <Project Path="src/UmbracoBlog.AppHost/UmbracoBlog.AppHost.csproj" />
     <Project Path="src/UmbracoBlog.Core/UmbracoBlog.Core.csproj" />
     <Project Path="src/UmbracoBlog.Frontend/UmbracoBlog.Frontend.csproj" />
@@ -12,5 +13,6 @@
   <Folder Name="/test/">
     <Project Path="test/UmbracoBlog.Core.Tests/UmbracoBlog.Core.Tests.csproj" />
     <Project Path="test/UmbracoBlog.TestHelpers/UmbracoBlog.TestHelpers.csproj" />
+    <Project Path="test/Shorthand.UmbracoHelpers.Tests/Shorthand.UmbracoHelpers.Tests.csproj" />
   </Folder>
 </Solution>

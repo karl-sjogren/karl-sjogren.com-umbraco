@@ -1,0 +1,14 @@
+using Shorthand.UmbracoCodeFirst;
+using Shorthand.UmbracoCodeFirst.Attributes;
+using UmbracoBlog.Core.DataTypes;
+
+namespace UmbracoBlog.Core.Elements;
+
+[UCFElementType("Javascript Code block", AllowInLibrary = true, Icon = UmbracoIcons.Code)]
+[UCFFolderPath("Elements")]
+public partial class JavascriptCodeBlock {
+    [UCFProperty("Code",
+        UmbracoBlogJavascriptCodeEditorDataType.Alias,
+        LabelOnTop = true)]
+    public partial string Code { get; }
+}

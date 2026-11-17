@@ -6,7 +6,7 @@
       its own fallback to stay in sync with the RuntimeHostConfigurationOption value set from the same property.
     -->
     <UmbracoAppLocalIcuVersion Condition="'$(UmbracoAppLocalIcuVersion)' == ''">72.1.0.3</UmbracoAppLocalIcuVersion>
-    <UmbracoCodeFirstVersion Condition="'$(UmbracoCodeFirstVersion)' == ''">0.0.2-alpha-62</UmbracoCodeFirstVersion>
+    <UmbracoCodeFirstVersion Condition="'$(UmbracoCodeFirstVersion)' == ''">0.0.2-alpha-76</UmbracoCodeFirstVersion>
   </PropertyGroup>
   <ItemGroup>
     <GlobalPackageReference Include="DotNet.ReproducibleBuilds" Version="2.0.5" />
@@ -49,6 +49,7 @@
     <PackageVersion Include="TestableIO.System.IO.Abstractions.Wrappers" Version="23.0.0" />
     <PackageVersion Include="Umbraco.Cms" Version="18.3.1" />
     <PackageVersion Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="18.3.1" />
+    <PackageVersion Include="Umbraco.Cms.Web.Common" Version="18.3.1" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
     <PackageVersion Include="xunit.v3.mtp-v2" Version="4.0.3" />
   </ItemGroup>

@@ -9,7 +9,4 @@ namespace UmbracoBlog.Core.DataTypes;
 [UCFFolderPath("CodeFirst")]
 public partial class UmbracoBlogRichTextDataType;
 
-internal sealed class UmbracoBlogRichTextConfiguration : UmbracoEditors.RichTextEditor.Configuration {
-    public UmbracoBlogRichTextConfiguration() {
-    }
-}
+internal sealed class UmbracoBlogRichTextConfiguration : UmbracoEditors.RichTextEditor.Configuration;

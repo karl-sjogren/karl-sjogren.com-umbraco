@@ -4,7 +4,7 @@ using UmbracoBlog.Core.DataTypes;
 
 namespace UmbracoBlog.Core.Documents;
 
-[UCFDocumentType(
+[UCFDocument(
     "SEO Composite",
     Icon = UmbracoIcons.Search)]
 [UCFFolderPath("Compositions")]
