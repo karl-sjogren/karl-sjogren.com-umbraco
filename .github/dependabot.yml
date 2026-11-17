@@ -29,6 +29,9 @@ updates:
       benchmark-dotnet:
         patterns:
           - "BenchmarkDotNet*"
+      shorthand-umbraco-code-first:
+        patterns:
+          - "Shorthand.UmbracoCodeFirst*"
       automapper:
         patterns:
           - "AutoMapper*"
