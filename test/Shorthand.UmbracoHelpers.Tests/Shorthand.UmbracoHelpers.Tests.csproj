@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <Compile Remove="BuildFixtures\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Shorthand.UmbracoHelpers\Shorthand.UmbracoHelpers.csproj" />
   </ItemGroup>
+  <Import Project="..\..\src\Shorthand.UmbracoHelpers\buildTransitive\Shorthand.UmbracoHelpers.targets" />
 </Project>

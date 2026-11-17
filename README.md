@@ -10,3 +10,10 @@ by `FriendlyHelpersComposer` (or manually with `services.AddFriendlyHelpers()`).
 pass the content, media, or URL helper as the first argument instead of calling
 a friendly extension method. The helpers use the current request context and do
 not resolve dependencies through `StaticServiceProvider`.
+
+Projects referencing the helper package receive a banned-symbols file for the
+four friendly extension classes. Project-reference consumers must explicitly
+import the helper project's `buildTransitive/Shorthand.UmbracoHelpers.targets`,
+as shown in the Umbraco project. Set `DisableShorthandUmbracoHelpersBannedSymbols`
+to `true` in the consuming project to opt out. The consumer must reference
+`Microsoft.CodeAnalysis.BannedApiAnalyzers` for these rules to be enforced.

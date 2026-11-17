@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsTestProject>false</IsTestProject>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Shorthand.UmbracoHelpers\Shorthand.UmbracoHelpers.csproj" />
+    <Compile Include="..\Probe.cs.txt" />
+  </ItemGroup>
+  <Import Project="..\..\..\..\src\Shorthand.UmbracoHelpers\buildTransitive\Shorthand.UmbracoHelpers.targets" />
+</Project>

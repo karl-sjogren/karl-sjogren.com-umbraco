@@ -11,5 +11,7 @@
 
   <ItemGroup>
     <None Update="UMBRACO-LICENSE.txt" Pack="true" PackagePath="\" CopyToPublishDirectory="PreserveNewest" />
+    <None Update="buildTransitive\Shorthand.UmbracoHelpers.targets" Pack="true" PackagePath="buildTransitive\Shorthand.UmbracoHelpers.targets" />
+    <None Update="buildTransitive\BannedSymbols.Shorthand.UmbracoHelpers.txt" Pack="true" PackagePath="buildTransitive\BannedSymbols.Shorthand.UmbracoHelpers.txt" />
   </ItemGroup>
 </Project>
