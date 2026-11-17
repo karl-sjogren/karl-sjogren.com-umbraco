@@ -230,7 +230,7 @@ jobs:
       run: dotnet restore --verbosity minimal
 
     - name: Publish application
-      run: dotnet publish --output ./artifacts --configuration Release
+      run: dotnet publish src/UmbracoBlog.Umbraco/UmbracoBlog.Umbraco.csproj --output ./artifacts --configuration Release --no-restore
       working-directory: ./
 
     - name: Upload build artifacts
