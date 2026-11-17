@@ -45,11 +45,11 @@
     <PackageVersion Include="Shorthand.UmbracoCodeFirst.Analyzers" Version="$(UmbracoCodeFirstVersion)" />
     <PackageVersion Include="Shorthand.UmbracoCodeFirst.SourceGenerators" Version="$(UmbracoCodeFirstVersion)" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
-    <PackageVersion Include="TestableIO.System.IO.Abstractions.TestingHelpers" Version="23.0.0" />
-    <PackageVersion Include="TestableIO.System.IO.Abstractions.Wrappers" Version="23.0.0" />
-    <PackageVersion Include="Umbraco.Cms" Version="[18.3.1,19.0.0)" />
-    <PackageVersion Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="[18.3.1,19.0.0)" />
-    <PackageVersion Include="Umbraco.Cms.Web.Common" Version="[18.3.1,19.0.0)" />
+    <PackageVersion Include="TestableIO.System.IO.Abstractions.TestingHelpers" Version="23.0.1" />
+    <PackageVersion Include="TestableIO.System.IO.Abstractions.Wrappers" Version="23.0.1" />
+    <PackageVersion Include="Umbraco.Cms" Version="[18.3.2, 19.0.0)" />
+    <PackageVersion Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="[18.3.2, 19.0.0)" />
+    <PackageVersion Include="Umbraco.Cms.Web.Common" Version="[18.3.2, 19.0.0)" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
     <PackageVersion Include="xunit.v3.mtp-v2" Version="4.0.3" />
   </ItemGroup>
