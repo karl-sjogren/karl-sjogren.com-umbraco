@@ -1,3 +1,4 @@
+using Examine;
 using Microsoft.Extensions.Options;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Configuration.Models;
@@ -27,6 +28,7 @@ public class FriendlyPublishedContentHelper : IFriendlyPublishedContentHelper {
     private readonly IPublishedValueFallback _publishedValueFallback;
     private readonly IDocumentUrlService _documentUrlService;
     private readonly IUserService _userService;
+    private readonly IExamineManager _examineManager;
 
     public FriendlyPublishedContentHelper(
             IVariationContextAccessor variationContextAccessor,
@@ -44,7 +46,8 @@ public class FriendlyPublishedContentHelper : IFriendlyPublishedContentHelper {
             IContentTypeService contentTypeService,
             IPublishedValueFallback publishedValueFallback,
             IDocumentUrlService documentUrlService,
-            IUserService userService) {
+            IUserService userService,
+            IExamineManager examineManager) {
         _variationContextAccessor = variationContextAccessor;
         _domainCache = domainCache;
         _documentNavigationQueryService = documentNavigationQueryService;
@@ -61,6 +64,7 @@ public class FriendlyPublishedContentHelper : IFriendlyPublishedContentHelper {
         _publishedValueFallback = publishedValueFallback;
         _documentUrlService = documentUrlService;
         _userService = userService;
+        _examineManager = examineManager;
     }
 
     public IPublishedContent? CreateModel(
@@ -356,6 +360,12 @@ public class FriendlyPublishedContentHelper : IFriendlyPublishedContentHelper {
         IPublishedContent content,
         Uri? current = null)
         => content.GetCultureFromDomains(_umbracoContextAccessor, _siteDomainMapper, _domainCache, _documentNavigationQueryService, GetPublishedStatusFilteringService(content), current);
+
+    public IEnumerable<PublishedSearchResult> SearchDescendants(IPublishedContent content, string term, string? indexName = null)
+        => content.SearchDescendants(_examineManager, _umbracoContextAccessor, term, indexName);
+
+    public IEnumerable<PublishedSearchResult> SearchChildren(IPublishedContent content, string term, string? indexName = null)
+        => content.SearchChildren(_examineManager, _umbracoContextAccessor, term, indexName);
 
     private INavigationQueryService GetNavigationQueryService(IPublishedContent content) =>
         content.ContentType.ItemType switch {

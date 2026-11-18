@@ -1,4 +1,6 @@
+using Examine;
 using Microsoft.Extensions.DependencyInjection;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.Membership;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Services;
@@ -8,6 +10,34 @@ using Umbraco.Cms.Core.Web;
 namespace Shorthand.UmbracoHelpers.Tests;
 
 public class FriendlyPublishedContentHelperTests {
+    [Theory]
+    [InlineData(true, null)]
+    [InlineData(true, "CustomIndex")]
+    [InlineData(false, null)]
+    [InlineData(false, "CustomIndex")]
+    public void SearchUsesInjectedExamineManager(bool children, string? indexName) {
+        var services = FriendlyHelperTestServices.Create();
+        var examine = A.Fake<IExamineManager>();
+        services.AddSingleton(examine);
+        services.AddFriendlyHelpers();
+        using var provider = services.BuildServiceProvider();
+        using var scope = provider.CreateScope();
+        var helper = scope.ServiceProvider.GetRequiredService<IFriendlyPublishedContentHelper>();
+        var content = A.Fake<IPublishedContent>();
+        IIndex index = null!;
+
+        Should.Throw<InvalidOperationException>(() => {
+            if(children) {
+                helper.SearchChildren(content, "needle", indexName);
+            } else {
+                helper.SearchDescendants(content, "needle", indexName);
+            }
+        });
+
+        A.CallTo(() => examine.TryGetIndex(indexName ?? Constants.UmbracoIndexes.ExternalIndexName, out index))
+            .MustHaveHappenedOnceExactly();
+    }
+
     [Theory]
     [InlineData(PublishedItemType.Content)]
     [InlineData(PublishedItemType.Media)]

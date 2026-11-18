@@ -1,3 +1,4 @@
+using Examine;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -36,6 +37,7 @@ internal static class FriendlyHelperTestServices {
         services.AddSingleton(A.Fake<IContentTypeService>());
         services.AddSingleton(A.Fake<IDocumentUrlService>());
         services.AddSingleton(A.Fake<IUserService>());
+        services.AddSingleton(A.Fake<IExamineManager>());
         services.AddSingleton<IDataProtectionProvider>(new EphemeralDataProtectionProvider());
 
         return services;

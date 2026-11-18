@@ -4,7 +4,7 @@ using Umbraco.Cms.Core.Web;
 
 namespace Shorthand.UmbracoHelpers;
 
-public class FriendlyUrlHelperHelper : IFriendlyUrlHelperHelper {
+public class FriendlyUrlHelperHelper : IFriendlyUrlHelper {
     private readonly IUmbracoContextAccessor _umbracoContextAccessor;
     private readonly IDataProtectionProvider _dataProtectionProvider;
 

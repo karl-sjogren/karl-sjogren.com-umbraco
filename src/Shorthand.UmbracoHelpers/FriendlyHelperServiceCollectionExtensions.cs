@@ -5,7 +5,7 @@ public static class FriendlyHelperServiceCollectionExtensions {
         services.AddScoped<IFriendlyImageCropperTemplateHelper, FriendlyImageCropperTemplateHelper>();
         services.AddScoped<IFriendlyPublishedContentHelper, FriendlyPublishedContentHelper>();
         services.AddScoped<IFriendlyPublishedElementHelper, FriendlyPublishedElementHelper>();
-        services.AddScoped<IFriendlyUrlHelperHelper, FriendlyUrlHelperHelper>();
+        services.AddScoped<IFriendlyUrlHelper, FriendlyUrlHelperHelper>();
         return services;
     }
 }

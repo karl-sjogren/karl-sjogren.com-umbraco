@@ -21,7 +21,7 @@ public class FriendlyHelperServiceCollectionExtensionsTests {
             .ShouldBeOfType<FriendlyImageCropperTemplateHelper>();
         first.ServiceProvider.GetRequiredService<IFriendlyPublishedElementHelper>()
             .ShouldBeOfType<FriendlyPublishedElementHelper>();
-        first.ServiceProvider.GetRequiredService<IFriendlyUrlHelperHelper>()
+        first.ServiceProvider.GetRequiredService<IFriendlyUrlHelper>()
             .ShouldBeOfType<FriendlyUrlHelperHelper>();
 
         var contentHelper = first.ServiceProvider.GetRequiredService<IFriendlyPublishedContentHelper>();

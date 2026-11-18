@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Shorthand.UmbracoHelpers;
 
-public interface IFriendlyUrlHelperHelper {
+public interface IFriendlyUrlHelper {
     /// <inheritdoc cref="Umbraco.Extensions.FriendlyUrlHelperExtensions.SurfaceAction(IUrlHelper, string, string)"/>
     string SurfaceAction(IUrlHelper url, string action, string controllerName);
 
