@@ -22,6 +22,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Shorthand.Vite" />
     <PackageReference Include="Umbraco.Cms" />
     <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" />
   </ItemGroup>
@@ -58,11 +59,5 @@
     <!-- Keep the local appsettings.json override out of publish output -->
     <Content Update="appsettings.Local.json" CopyToPublishDirectory="Never" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
-    <RazorCompileOnBuild>true</RazorCompileOnBuild>
-    <RazorCompileOnPublish>true</RazorCompileOnPublish>
-  </PropertyGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-/* global __dirname, process */
+/* global process */
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import mkcert from 'vite-plugin-mkcert';
@@ -12,7 +12,7 @@ export default defineConfig({
     copy({
       hook: 'buildStart',
       targets: [
-        { src: 'static/**/*', dest: resolve(__dirname, '../UmbracoBlog.Web/wwwroot/static') }
+        { src: 'static/**/*', dest: resolve(import.meta.dirname, '../UmbracoBlog.Umbraco/wwwroot/static') }
       ]
     }),
     codecovVitePlugin({
@@ -23,7 +23,7 @@ export default defineConfig({
   ],
   build: {
     cssCodeSplit: false,
-    outDir: resolve(__dirname, '../UmbracoBlog.Web/wwwroot/'),
+    outDir: resolve(import.meta.dirname, '../UmbracoBlog.Umbraco/wwwroot/'),
     emptyOutDir: false,
     assetsDir: 'assets',
     reportCompressedSize: true,
@@ -33,7 +33,7 @@ export default defineConfig({
       polyfill: false
     },
     rollupOptions: {
-      input: resolve(__dirname, 'scripts/index.mjs'),
+      input: resolve(import.meta.dirname, 'scripts/index.mjs'),
       plugins: [
         /*visualizer({
           emitFile: true

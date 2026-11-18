@@ -1,13 +1,15 @@
+using Aspire.Hosting.Dotnet;
+
 namespace Umbraco.Aspire.AppHost.Extensions;
 
 internal static partial class IDistributedApplicationBuilderExtensions {
     public static IDistributedApplicationBuilder AddRedisCache(
             this IDistributedApplicationBuilder builder,
-            IResourceBuilder<ProjectResource> umbracoProject,
+            IResourceBuilder<DotnetProjectResource> umbracoProject,
             string redisCacheName) {
         var redisCache = builder.AddAzureManagedRedis(redisCacheName);
 
-        if(builder.ExecutionContext.IsRunMode) {
+        if(!builder.ExecutionContext.IsRunMode) {
             redisCache
                 .RunAsContainer(redis => {
                     redis.WithDataVolume();

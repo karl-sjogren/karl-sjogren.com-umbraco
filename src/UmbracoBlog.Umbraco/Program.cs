@@ -1,4 +1,6 @@
 
+using Shorthand.Vite;
+
 var builder = WebApplication.CreateBuilder(args);
 
 #if DEBUG
@@ -12,6 +14,12 @@ builder.CreateUmbracoBuilder()
     .Build();
 
 builder.AddServiceDefaults();
+
+builder.Services.AddVite(options => {
+    options.ManifestFileName = ".vite/manifest.json";
+    options.Port = 5010;
+    options.Https = true;
+});
 
 var app = builder.Build();
 
