@@ -1,6 +1,0 @@
-<Project>
-  <Import Project="..\..\..\Directory.Build.props" />
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" PrivateAssets="all" />
-  </ItemGroup>
-</Project>

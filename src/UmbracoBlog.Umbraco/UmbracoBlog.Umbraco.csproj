@@ -5,12 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shorthand.UmbracoHelpers\Shorthand.UmbracoHelpers.csproj" />
     <ProjectReference Include="..\UmbracoBlog.ServiceDefaults\UmbracoBlog.ServiceDefaults.csproj" />
     <ProjectReference Include="..\UmbracoBlog.Core\UmbracoBlog.Core.csproj" />
   </ItemGroup>
-
-  <Import Project="..\Shorthand.UmbracoHelpers\buildTransitive\Shorthand.UmbracoHelpers.targets" />
 
   <ItemGroup>
     <PackageReference Include="Shorthand.UmbracoCodeFirst" />

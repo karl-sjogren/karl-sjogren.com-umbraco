@@ -1,4 +1,0 @@
-T:Umbraco.Extensions.FriendlyImageCropperTemplateExtensions;Use IFriendlyImageCropperTemplateHelper instead.
-T:Umbraco.Extensions.FriendlyPublishedContentExtensions;Use IFriendlyPublishedContentHelper instead.
-T:Umbraco.Extensions.FriendlyPublishedElementExtensions;Use IFriendlyPublishedElementHelper instead.
-T:Umbraco.Extensions.FriendlyUrlHelperExtensions;Use IFriendlyUrlHelper instead.
