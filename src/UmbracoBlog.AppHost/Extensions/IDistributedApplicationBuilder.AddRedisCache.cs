@@ -9,7 +9,7 @@ internal static partial class IDistributedApplicationBuilderExtensions {
             string redisCacheName) {
         var redisCache = builder.AddAzureManagedRedis(redisCacheName);
 
-        if(!builder.ExecutionContext.IsRunMode) {
+        if(builder.ExecutionContext.IsRunMode) {
             redisCache
                 .RunAsContainer(redis => {
                     redis.WithDataVolume();

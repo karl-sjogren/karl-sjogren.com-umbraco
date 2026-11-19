@@ -1,8 +1,13 @@
-@using Umbraco.Extensions
+@using Microsoft.AspNetCore.Html
+@using Shorthand.UmbracoCodeFirst.Attributes
+@using Shorthand.UmbracoHelpers
+@using Umbraco.Cms.Core.Models.PublishedContent
 @using Umbraco.Cms.Web.Common.PublishedModels
 @using Umbraco.Cms.Web.Common.Views
-@using Umbraco.Cms.Core.Models.PublishedContent
-@using Microsoft.AspNetCore.Html
-@using Shorthand.UmbracoCodeFirst.Attributes;
+@using Umbraco.Extensions
+@using UmbracoBlog.Core.ViewModels
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@inject UmbracoBlog.Core.Contracts.IElementHelper ElementHelper
+@inject IFriendlyPublishedContentHelper FriendlyPublishedContentHelper

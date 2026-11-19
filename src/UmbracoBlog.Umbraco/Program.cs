@@ -1,5 +1,7 @@
 
 using Shorthand.Vite;
+using UmbracoBlog.Core.Contracts;
+using UmbracoBlog.Core.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +22,8 @@ builder.Services.AddVite(options => {
     options.Port = 5010;
     options.Https = true;
 });
+
+builder.Services.AddScoped<IElementHelper, ElementHelper>();
 
 var app = builder.Build();
 

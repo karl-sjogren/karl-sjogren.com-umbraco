@@ -1,0 +1,11 @@
+@model UmbracoBlog.Core.Elements.ImageBlock
+
+@{
+    if(Model.Image is null) {
+        return;
+    }
+
+    var imageUrl = FriendlyPublishedContentHelper.Url(Model.Image);
+}
+
+<img src="@imageUrl" alt="@Model.AltText" />
