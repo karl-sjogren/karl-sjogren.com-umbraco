@@ -1,4 +1,9 @@
 @inject Shorthand.Vite.Contracts.IViteService Vite
+@inherits UmbracoViewPage<LayoutViewModel>
+
+@{
+    Layout = null;
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +16,7 @@
             <meta name="robots" content="noindex, nofollow" />
         }
 
-        <title>@Model.MetaTitle</title>
+        <title>@Model.Title</title>
         @if(!string.IsNullOrWhiteSpace(Model.MetaDescription)) {
             <meta name="description" content="@Model.MetaDescription" />
         }
@@ -24,15 +29,9 @@
         </environment>
 
         @RenderSection("Header", required: false)
-
-        <open-graph page-view-model="@Model" />
-
-        <canonical-url page="@Model.Page">
     </head>
 
     <body>
-        <vc:header page-view-model="@Model" />
-
         <main>
             @RenderBody()
         </main>

@@ -1,20 +1,14 @@
 ﻿@attribute [UCFTemplate("Start Page")]
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<StartPageViewModel>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<StartPageViewModel>>
 
-@{
-	Layout = null;
-}
-
-<h1>@Model.Content.MainHeading</h1>
+<h1>@Model.ViewModel.Content.MainHeading</h1>
 
 <ol>
-    @foreach (var blogPost in Model.BlogPosts)
+    @foreach (var blogPost in Model.ViewModel.BlogPosts)
     {
         <li>
-            <h2>@blogPost.MainHeading</h2>
+            <h2><a href="@FriendlyPublishedContentHelper.Url(blogPost)">@blogPost.MainHeading</a></h2>
             @foreach (var content in blogPost.MainContent!) {
-                @*
-                @await Component.InvokeAsync(ElementHelper.GetViewComponentForElement(content.Content), new { content.Content })*@
                 @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
             }
         </li>

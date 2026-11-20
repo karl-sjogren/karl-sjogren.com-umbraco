@@ -2,6 +2,7 @@
 using Shorthand.Vite;
 using UmbracoBlog.Core.Contracts;
 using UmbracoBlog.Core.Helpers;
+using UmbracoBlog.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ builder.Services.AddVite(options => {
 });
 
 builder.Services.AddScoped<IElementHelper, ElementHelper>();
+builder.Services.AddScoped<ILayoutViewModelFactory, LayoutViewModelFactory>();
 
 var app = builder.Build();
 
