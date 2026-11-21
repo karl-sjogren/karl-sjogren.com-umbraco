@@ -11,11 +11,11 @@ internal static partial class IDistributedApplicationBuilderExtensions {
         var sqlServer = builder.AddSqlServer(serverName)
             .WithDataVolume()
             .WithLifetime(ContainerLifetime.Persistent)
-            .WithHostPort(55921);
+            .WithHostPort(55931);
 
         sqlServer.WithDbGate(builder => {
             sqlServer.WithChildRelationship(builder);
-            builder.WithHostPort(55922);
+            builder.WithHostPort(55932);
             builder.WithLifetime(ContainerLifetime.Persistent);
 
             builder.OnResourceEndpointsAllocated((resource, _, _) => {

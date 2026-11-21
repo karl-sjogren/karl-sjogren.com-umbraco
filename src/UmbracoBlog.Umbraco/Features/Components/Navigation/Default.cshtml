@@ -1,0 +1,22 @@
+@model UmbracoBlog.Umbraco.Features.Components.Navigation.NavigationViewModel
+
+@{
+    if(Model.Items is null || !Model.Items.Any()) {
+        return;
+    }
+}
+
+<nav>
+    <ul>
+        @foreach(var item in Model.Items) {
+            <li class="nav-item">
+                <a href="@item.Url">
+                    @if(!string.IsNullOrEmpty(item.Icon)) {
+                        <i class="fas fa-@item.Icon"></i>
+                    }
+                    <span>@item.Title</span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

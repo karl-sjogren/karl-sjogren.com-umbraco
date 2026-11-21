@@ -1,0 +1,62 @@
+@inject Shorthand.Vite.Contracts.IViteService Vite
+@inherits UmbracoViewPage<LayoutViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta name="format-detection" content="telephone=no">
+
+        @if(Model.BlockSearchEngineIndexing) {
+            <meta name="robots" content="noindex, nofollow" />
+        }
+
+        <title>@Model.Title</title>
+        @if(!string.IsNullOrWhiteSpace(Model.MetaDescription)) {
+            <meta name="description" content="@Model.MetaDescription" />
+        }
+
+        <environment exclude="Development">
+            <link rel="modulepreload" href="@await Vite.GetAssetUrlAsync("scripts/index.mjs")" as="script" />
+            <link rel="preload" href="@await Vite.GetAssetUrlAsync("assets/fonts/font.woff2")" as="font" type="font/woff2" crossorigin>
+            <link rel="preload" href="@await Vite.GetAssetUrlAsync("assets/fonts/font2.woff2")" as="font" type="font/woff2" crossorigin>
+            <link rel="stylesheet" href="@await Vite.GetAssetUrlAsync("style.css")" />
+        </environment>
+
+        @RenderSection("Header", required: false)
+    </head>
+
+    <body>
+        <aside aria-label="Sidebar">
+            <header class="profile-wrapper">
+                <a href="/">
+                    <img src="/static/images/avatar_cropped.png" width="112" height="112">
+                </a>
+                <h1 class="site-title"><a href="/">Karls dev-blog</a></h1>
+                <p class="site-subtitle">Stuff that I find interesting</p>
+            </header>
+
+            <vc:Navigation />
+
+            <div class="sidebar-bottom">
+                <a href="https://github.com/karl-sjogren" aria-label="My github" target="_blank" rel="noopener noreferrer"> <i class="fa-brands fa-github"></i> </a>
+                <a href="https://stackoverflow.com/users/547640/karl-johan-sj%c3%b6gren" aria-label="My stackoverflow" target="_blank" rel="noopener noreferrer"> <i class="fa-brands fa-stack-overflow"></i> </a>
+            </div>
+        </aside>
+
+        <main>
+            @RenderBody()
+        </main>
+
+        <script src="@await Vite.GetAssetUrlAsync("scripts/index.mjs")" type="module"></script>
+
+        <environment names="Development">
+            <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+        </environment>
+    </body>
+</html>

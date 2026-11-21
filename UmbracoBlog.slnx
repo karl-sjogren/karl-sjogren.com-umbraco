@@ -12,5 +12,6 @@
   <Folder Name="/test/">
     <Project Path="test/UmbracoBlog.Core.Tests/UmbracoBlog.Core.Tests.csproj" />
     <Project Path="test/UmbracoBlog.TestHelpers/UmbracoBlog.TestHelpers.csproj" />
+    <Project Path="test/UmbracoBlog.Umbraco.Tests/UmbracoBlog.Umbraco.Tests.csproj" />
   </Folder>
 </Solution>

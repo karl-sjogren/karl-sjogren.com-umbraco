@@ -1,13 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <UmbracoCodeFirstViewsDirectory>..\UmbracoBlog.Umbraco\Views</UmbracoCodeFirstViewsDirectory>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <UmbracoCodeFirstViewsDirectory>..\UmbracoBlog.Umbraco\Features</UmbracoCodeFirstViewsDirectory>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="..\UmbracoBlog.Umbraco\Views\**\*.cshtml" ExcludeFromSingleFile="true" CopyToPublishDirectory="PreserveNewest" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder);$(DefaultWebContentItemExcludes)" />
-  </ItemGroup>
 
   <ItemGroup>
     <Using Include="Umbraco.Cms.Core.Constants" Alias="UmbracoConstants" />

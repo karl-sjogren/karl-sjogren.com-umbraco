@@ -1,3 +1,5 @@
+using UmbracoBlog.Core.Elements;
+
 namespace UmbracoBlog.Core.ViewModels;
 
 public class LayoutViewModel {
@@ -7,6 +9,7 @@ public class LayoutViewModel {
     public string? SeoTitle { get; set; }
     public string? MetaDescription { get; init; }
     public bool BlockSearchEngineIndexing { get; init; }
+    public required SiteSettingsElement? SiteSettings { get; init; }
 
     public string Title => string.IsNullOrWhiteSpace(SeoTitle) ? MetaTitle : SeoTitle;
 }

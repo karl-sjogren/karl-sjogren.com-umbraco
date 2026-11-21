@@ -9,9 +9,9 @@ namespace UmbracoBlog.Core.Documents;
     "Blog Post",
     Icon = UmbracoIcons.Star,
     AllowAsRoot = false,
-    DefaultTemplateAlias = UmbracoTemplates.BlogPost,
-    AllowedTemplateAliases = new[] { UmbracoTemplates.BlogPost })]
-[UCFComposite(typeof(SeoComposite))]
+    DefaultTemplateAlias = UmbracoTemplates.BlogPost.Index,
+    AllowedTemplateAliases = new[] { UmbracoTemplates.BlogPost.Index })]
+[UCFComposite(typeof(Composites.SeoComposite))]
 public partial class BlogPost {
     [UCFProperty(
         "Main heading",

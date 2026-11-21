@@ -6,8 +6,9 @@
       its own fallback to stay in sync with the RuntimeHostConfigurationOption value set from the same property.
     -->
     <UmbracoAppLocalIcuVersion Condition="'$(UmbracoAppLocalIcuVersion)' == ''">72.1.0.3</UmbracoAppLocalIcuVersion>
-    <UmbracoCodeFirstVersion Condition="'$(UmbracoCodeFirstVersion)' == ''">0.0.2-alpha-82</UmbracoCodeFirstVersion>
+    <UmbracoCodeFirstVersion Condition="'$(UmbracoCodeFirstVersion)' == ''">0.0.2-alpha-96</UmbracoCodeFirstVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <GlobalPackageReference Include="DotNet.ReproducibleBuilds" Version="2.0.5" />
     <GlobalPackageReference Include="Karls.Analyzers" Version="0.4.3" />
@@ -15,6 +16,7 @@
     <GlobalPackageReference Include="Roslynator.Formatting.Analyzers" Version="5.0.1" />
     <GlobalPackageReference Include="TestableIO.System.IO.Abstractions.Analyzers" Version="2022.0.0" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="17.0.0" />
     <PackageVersion Include="Aspire.Hosting.Azure.Redis" Version="17.0.0" />

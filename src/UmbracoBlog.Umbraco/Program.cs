@@ -3,6 +3,7 @@ using Shorthand.Vite;
 using UmbracoBlog.Core.Contracts;
 using UmbracoBlog.Core.Helpers;
 using UmbracoBlog.Core.Services;
+using UmbracoBlog.Umbraco.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.CreateUmbracoBuilder()
     .Build();
 
 builder.AddServiceDefaults();
+
+builder.Services.AddMvc().AddFeatureFolders();
 
 builder.Services.AddVite(options => {
     options.ManifestFileName = ".vite/manifest.json";

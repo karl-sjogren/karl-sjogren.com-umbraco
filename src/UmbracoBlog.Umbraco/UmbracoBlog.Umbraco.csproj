@@ -2,6 +2,7 @@
   <PropertyGroup>
     <CompressionEnabled>false</CompressionEnabled> <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
     <UmbracoCodeFirstGenerateTemplates>false</UmbracoCodeFirstGenerateTemplates>
+    <RazorLangVersion>latest</RazorLangVersion>
   </PropertyGroup>
 
   <ItemGroup>
