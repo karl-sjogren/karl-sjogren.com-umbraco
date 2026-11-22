@@ -239,6 +239,13 @@ jobs:
       run: dotnet publish src/UmbracoBlog.Umbraco/UmbracoBlog.Umbraco.csproj --output ./artifacts --configuration Release --no-restore
       working-directory: ./
 
+    - name: Archive Release
+      uses: thedoctor0/zip-release@0.7.6
+      with:
+        type: 'zip'
+        filename: ../artifacts.zip # This path is relative to the directory where the artifact is stored
+        directory: ./artifacts/
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v7
       with:
@@ -246,8 +253,15 @@ jobs:
         path: ./artifacts/
         if-no-files-found: error
 
-  deploy:
-    name: Deploy
+    - name: Upload zipped build artifacts
+      uses: actions/upload-artifact@v7
+      with:
+        name: publish-artifacts-zip
+        path: ./artifacts.zip
+        if-no-files-found: error
+
+  deploy-monster:
+    name: Deploy to Monster
     runs-on: ubuntu-latest
 
     needs: net-build
@@ -261,6 +275,7 @@ jobs:
 
     - name: Deploy files
       uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+      if: false
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
@@ -268,3 +283,25 @@ jobs:
         protocol: ftps
         local-dir: ./artifacts/
         server-dir: ./wwwroot/
+
+  deploy-azure:
+    name: Deploy to Azure
+    runs-on: ubuntu-latest
+
+    needs: net-build
+
+    steps:
+    - name: Download zipped build artifacts
+      uses: actions/download-artifact@v7
+      with:
+        name: publish-artifacts-zip
+        path: ./
+
+    - name: Deploy application
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: karl-sjogren-com
+        publish-profile: ${{ secrets.PUBLISH_PROFILE }}
+        package: ./artifacts.zip
+        clean: true
