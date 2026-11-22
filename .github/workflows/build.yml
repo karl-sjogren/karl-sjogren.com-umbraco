@@ -259,13 +259,12 @@ jobs:
         name: publish-artifacts
         path: ./artifacts
 
-    - name: 📂 Sync files
+    - name: Deploy files
       uses: SamKirkland/FTP-Deploy-Action@v4.4.0
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftps
-        dry-run: true
         local-dir: ./artifacts/
         server-dir: ./wwwroot/
