@@ -275,7 +275,6 @@ jobs:
 
     - name: Deploy files
       uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-      if: false
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
