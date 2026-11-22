@@ -8,7 +8,6 @@
     "**/.yarn/cache": true,
     ".vs/": true
   },
-  "eslint.useFlatConfig": true,
   "css.validate": false,
   "scss.validate": false,
   "stylelint.enable": true,
