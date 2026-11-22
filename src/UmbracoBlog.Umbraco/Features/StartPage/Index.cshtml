@@ -2,24 +2,26 @@
 @attribute [UCFTemplate("Start Page")]
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<StartPageViewModel>>
 
-<ol class="blog-post-list">
-    @foreach (var blogPost in Model.ViewModel.BlogPosts)
-    {
-        <li>
-            <article class="blog-post-excerpt">
-                <h2><a href="@FriendlyPublishedContentHelper.Url(blogPost)">@blogPost.MainHeading</a></h2>
+<article class="start-page">
+    <ol class="blog-post-list">
+        @foreach (var blogPost in Model.ViewModel.BlogPosts)
+        {
+            <li>
+                <article class="blog-post-excerpt">
+                    <h2><a href="@FriendlyPublishedContentHelper.Url(blogPost)">@blogPost.MainHeading</a></h2>
 
-                <div>
-                    @foreach (var content in blogPost.MainContent!.Take(2)) {
-                        @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
-                    }
-                </div>
+                    <div>
+                        @foreach (var content in blogPost.MainContent!.Take(2)) {
+                            @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
+                        }
+                    </div>
 
-                <footer>
-                    <span class="published"> <i class="fa fa-calendar"></i> <time datetime="@blogPost.PublishDate.ToString("yyyy-MM-dd")">@blogPost.PublishDate.ToString("MMMM dd, yyyy")</time> </span>
-                    <a href="@FriendlyPublishedContentHelper.Url(blogPost)"> Read more <i class="fa fa-arrow-right"></i></a>
-                </footer>
-            </article>
-        </li>
-    }
-</ol>
+                    <footer>
+                        <span class="published"> <i class="fa fa-calendar"></i> <time datetime="@blogPost.PublishDate.ToString("yyyy-MM-dd")">@blogPost.PublishDate.ToString("MMMM dd, yyyy")</time> </span>
+                        <a href="@FriendlyPublishedContentHelper.Url(blogPost)"> Read more <i class="fa fa-arrow-right"></i></a>
+                    </footer>
+                </article>
+            </li>
+        }
+    </ol>
+</article>

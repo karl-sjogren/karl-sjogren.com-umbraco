@@ -32,7 +32,16 @@
     </head>
 
     <body>
+        <button class="sidebar-toggle">
+            <i class="fa-solid fa-bars"></i>
+            <span class="site-title">@Model.SiteSettings?.SiteName</span>
+        </button>
+
         <aside aria-label="Sidebar">
+            <button class="sidebar-close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
             <header class="profile-wrapper">
                 <a href="/" class="avatar-link">
                     <img src="/static/images/avatar_cropped.png" width="112" height="112">
@@ -68,7 +77,9 @@
         </aside>
 
         <main>
-            @RenderBody()
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
         </main>
 
         <script src="@await Vite.GetAssetUrlAsync("scripts/index.mjs")" type="module"></script>

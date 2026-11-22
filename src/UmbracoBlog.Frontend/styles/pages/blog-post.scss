@@ -1,0 +1,41 @@
+.blog-post {
+  margin-bottom: 2rem;
+
+  header {
+    .blog-post-meta {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+
+      font-size: 0.8rem;
+
+      .tags,
+      .published {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          &:after {
+            content: ', ';
+          }
+
+          &:last-child:after {
+            content: '';
+          }
+        }
+      }
+    }
+  }
+}
