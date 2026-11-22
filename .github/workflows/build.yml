@@ -261,5 +261,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftps
         dry-run: true
-        local-dir: ./artifacts
-        server-dir: ./wwwroot
+        local-dir: ./artifacts/
+        server-dir: ./wwwroot/
