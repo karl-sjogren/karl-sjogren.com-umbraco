@@ -51,6 +51,7 @@ public class StartPageController : RenderController {
         var blogPosts = _friendlyPublishedContentHelper
             .ChildrenOfType(blogIndex, Core.Documents.BlogPost.ModelTypeAlias)
             .OfType<Core.Documents.BlogPost>()
+            .OrderByDescending(x => x.PublishDate)
             .ToList();
 
         return [.. blogPosts];
