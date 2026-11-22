@@ -8,5 +8,12 @@
     "**/.yarn/cache": true,
     ".vs/": true
   },
+  "eslint.useFlatConfig": true,
+  "css.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.packageManager": "yarn",
+  "stylelint.configBasedir": "./src/UmbracoBlog.Frontend/",
   "dotnet.defaultSolution": "UmbracoBlog.slnx",
+  "stylelint.validate": ["css", "postcss", "scss"],
 }

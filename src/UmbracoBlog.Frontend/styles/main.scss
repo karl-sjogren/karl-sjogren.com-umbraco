@@ -5,7 +5,7 @@
 @use 'fa-scss/brands';
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: Lato, sans-serif;
   background-color: rgb(27, 27, 30);
 }
 
@@ -42,7 +42,7 @@ aside {
     a:active {
       color: #717070;
       text-decoration: none;
-      transition: color .3s ease-in-out;
+      transition: color 0.3s ease-in-out;
     }
 
     a:hover {
@@ -93,9 +93,9 @@ aside {
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
       border: 1px solid #4e4e4e;
-      background-color: #222222;
+      background-color: #222;
 
-      transition: all .3s ease-in-out;
+      transition: all 0.3s ease-in-out;
 
       &,
       &:visited,
@@ -107,7 +107,7 @@ aside {
       }
 
       &:hover {
-        background-color: #333333;
+        background-color: #333;
         color: rgb(255, 255, 255, 0.95);
       }
     }
@@ -125,7 +125,7 @@ aside {
     color: #717070;
 
     a {
-      transition: color .3s ease-in-out;
+      transition: color 0.3s ease-in-out;
 
       &,
       &:visited,
