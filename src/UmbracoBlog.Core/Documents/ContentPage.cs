@@ -7,7 +7,7 @@ namespace UmbracoBlog.Core.Documents;
 
 [UCFDocument(
     "Content Page",
-    Icon = UmbracoIcons.Star,
+    Icon = UmbracoIcons.Document,
     AllowAsRoot = false,
     DefaultTemplateAlias = UmbracoTemplates.ContentPage.Index,
     AllowedTemplateAliases = new[] { UmbracoTemplates.ContentPage.Index })]

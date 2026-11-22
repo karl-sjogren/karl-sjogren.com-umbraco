@@ -1,6 +1,22 @@
 @model UmbracoBlog.Core.Elements.CodeBlock
 
-<pre>
-    <code data-lang="@Model.Language">@Model.Code</code>
-</pre>
+<div class="code-block-container">
+    <div class="code-block-header">
+        <div class="code-block-dots">
+            <i class="fa fa-circle"></i>
+            <i class="fa fa-circle"></i>
+            <i class="fa fa-circle"></i>
+        </div>
 
+        <div class="code-block-title">
+            <i class="fa fa-code"></i>
+            <span>@Model.Language</span>
+        </div>
+
+        <button class="code-block-copy-code-button" title="Copy code">
+            <i class="fa fa-copy"></i>
+        </button>
+    </div>
+
+    <pre><code data-lang="@Model.Language">@Model.Code</code></pre>
+</div>

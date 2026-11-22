@@ -1,8 +1,10 @@
 ﻿@attribute [UCFTemplate("Content Page")]
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<UmbracoBlog.Core.Documents.BlogPost>>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<UmbracoBlog.Core.Documents.ContentPage>>
 
-<h1>@Model.ViewModel.MainHeading</h1>
+<article class="content-page">
+    <h2>@Model.ViewModel.MainHeading</h2>
 
-@foreach (var content in Model.ViewModel.MainContent!) {
-    @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
-}
+    @foreach (var content in Model.ViewModel.MainContent!) {
+        @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
+    }
+</article>

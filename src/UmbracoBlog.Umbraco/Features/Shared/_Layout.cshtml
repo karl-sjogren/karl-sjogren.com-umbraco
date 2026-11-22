@@ -34,19 +34,37 @@
     <body>
         <aside aria-label="Sidebar">
             <header class="profile-wrapper">
-                <a href="/">
+                <a href="/" class="avatar-link">
                     <img src="/static/images/avatar_cropped.png" width="112" height="112">
                 </a>
-                <h1 class="site-title"><a href="/">Karls dev-blog</a></h1>
-                <p class="site-subtitle">Stuff that I find interesting</p>
+                <h1 class="site-title"><a href="/">@Model.SiteSettings?.SiteName</a></h1>
+                <p class="site-tagline">@Model.SiteSettings?.SiteTagline</p>
             </header>
 
             <vc:Navigation />
 
-            <div class="sidebar-bottom">
-                <a href="https://github.com/karl-sjogren" aria-label="My github" target="_blank" rel="noopener noreferrer"> <i class="fa-brands fa-github"></i> </a>
-                <a href="https://stackoverflow.com/users/547640/karl-johan-sj%c3%b6gren" aria-label="My stackoverflow" target="_blank" rel="noopener noreferrer"> <i class="fa-brands fa-stack-overflow"></i> </a>
-            </div>
+            <footer>
+                @{
+                    var siteSettings = Model.SiteSettings;
+
+                    if(!string.IsNullOrWhiteSpace(siteSettings?.GithubLink)) {
+                        <a href="@siteSettings.GithubLink" aria-label="My Github profile" target="_blank" rel="noopener noreferrer"> <i class="fa-brands fa-github"></i> </a>
+                    }
+
+                    if(!string.IsNullOrWhiteSpace(siteSettings?.StackoverflowLink)) {
+                        <a href="@siteSettings.StackoverflowLink" aria-label="My Stack Overflow profile" target="_blank" rel="noopener noreferrer"> <i class="fa-brands fa-stack-overflow"></i> </a>
+                    }
+
+                    if(!string.IsNullOrWhiteSpace(siteSettings?.Email)) {
+                        var email = siteSettings.Email;
+                        var splitEmail = email.Split('@');
+                        if(splitEmail.Length == 2) {
+                            var href = "javascript:location.href = 'mailto:' + ['" + splitEmail[0] + "','" + splitEmail[1] + "'].join('@');";
+                            <a href="@href" aria-label="My Email" target="_blank" rel="noopener noreferrer"> <i class="fa-solid fa-envelope"></i> </a>
+                        }
+                    }
+                }
+            </footer>
         </aside>
 
         <main>

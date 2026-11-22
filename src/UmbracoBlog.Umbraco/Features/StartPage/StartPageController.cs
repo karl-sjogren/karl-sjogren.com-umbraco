@@ -5,7 +5,6 @@ using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 using UmbracoBlog.Core.Contracts;
 using UmbracoBlog.Core.Documents;
-using UmbracoBlog.Core.ViewModels;
 
 namespace UmbracoBlog.Umbraco.Features.StartPage;
 

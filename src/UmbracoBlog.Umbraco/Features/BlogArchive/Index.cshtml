@@ -1,0 +1,19 @@
+﻿@using UmbracoBlog.Umbraco.Features.BlogArchive
+@attribute [UCFTemplate("Blog Archive")]
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<BlogArchiveViewModel>>
+
+<article class="blog-post">
+    <h2>@Model.ViewModel.Content.MainHeading</h2>
+
+    @foreach(var year in Model.ViewModel.BlogPosts) {
+        <h3>@year.Year</h3>
+        <ul>
+        @foreach(var post in year.BlogPosts) {
+            <li>
+                <time datetime="@post.Date.ToString("yyyy-MM-dd")">@post.Date.ToString("dd MMM")</time>
+                <a href="@post.Url">@post.Title</a>
+            </li>
+        }
+        </ul>
+    }
+</article>

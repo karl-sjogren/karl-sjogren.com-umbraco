@@ -6,15 +6,19 @@ import {
 
 const highlighter = await createHighlighter({
   themes: ['github-dark-default'],
-  langs: ['javascript', 'csharp', 'shell', 'bash', 'plain']
+  langs: ['javascript', 'csharp', 'shell', 'bash', 'plain', 'xml']
 });
 
 export default (rootElement = document.body) => {
-  const codeBlocks = rootElement.querySelectorAll('pre code');
+  const codeBlocks = rootElement.querySelectorAll('.code-block-container');
 
-  codeBlocks.forEach((block) => {
+  codeBlocks.forEach(container => {
+    const block = container.querySelector('code');
+
     const language = block.dataset.lang || 'plain';
-    const html = highlighter.codeToHtml(block.textContent, {
+    const code = block.textContent;
+
+    const html = highlighter.codeToHtml(code, {
       lang: language,
       theme: 'github-dark-default',
       transformers: [
@@ -25,5 +29,12 @@ export default (rootElement = document.body) => {
 
     const htmlFragment = document.createRange().createContextualFragment(html);
     block.parentElement.replaceWith(htmlFragment);
+
+    const button = container.querySelector('.code-block-copy-code-button');
+    if(button) {
+      button.addEventListener('click', () => {
+        navigator.clipboard.writeText(code);
+      });
+    }
   });
 };

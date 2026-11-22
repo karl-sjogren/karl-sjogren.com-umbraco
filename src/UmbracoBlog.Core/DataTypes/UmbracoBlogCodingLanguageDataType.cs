@@ -18,7 +18,8 @@ internal sealed class UmbracoBlogCodingLanguageConfiguration : UmbracoEditors.Dr
             "typescript",
             "bash",
             "pwsh",
-            "plaintext"
+            "plaintext",
+            "xml"
         });
     }
 }

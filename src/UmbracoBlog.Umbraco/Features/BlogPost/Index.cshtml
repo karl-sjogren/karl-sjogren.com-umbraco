@@ -1,8 +1,26 @@
 ﻿@attribute [UCFTemplate("Blog Post")]
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<UmbracoBlog.Core.Documents.BlogPost>>
 
-<h2>@Model.ViewModel.MainHeading</h2>
+<article class="blog-post">
+    <header>
+        <h2>@Model.ViewModel.MainHeading</h2>
+        <div class="blog-post-meta">
+            <span class="published"> <i class="fa fa-calendar"></i> <time datetime="@Model.ViewModel.PublishDate.ToString("yyyy-MM-dd")">@Model.ViewModel.PublishDate.ToString("MMMM dd, yyyy")</time> </span>
 
-@foreach (var content in Model.ViewModel.MainContent!) {
-    @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
-}
+            @if(Model.ViewModel.Tags?.Any() == true) {
+                <div class="tags">
+                    <i class="fas fa-tags"></i>
+                    <ul class="tag-list">
+                        @foreach (var tag in Model.ViewModel.Tags!) {
+                            <li>@tag</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </header>
+
+    @foreach (var content in Model.ViewModel.MainContent!) {
+        @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
+    }
+</article>
