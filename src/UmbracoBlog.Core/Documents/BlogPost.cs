@@ -37,7 +37,7 @@ public partial class BlogPost {
         SortOrder = 1)]
     [UCFDescription("The main content for the blog post.")]
     [ContentTab]
-    public partial IEnumerable<BlockListItem> MainContent { get; }
+    public partial BlockListModel MainContent { get; }
 
     [UCFProperty(
         "Tags",

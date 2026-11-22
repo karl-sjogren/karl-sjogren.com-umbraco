@@ -1,4 +1,9 @@
 
+using Shorthand.Vite;
+using UmbracoBlog.Core.Contracts;
+using UmbracoBlog.Core.Helpers;
+using UmbracoBlog.Core.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 #if DEBUG
@@ -12,6 +17,15 @@ builder.CreateUmbracoBuilder()
     .Build();
 
 builder.AddServiceDefaults();
+
+builder.Services.AddVite(options => {
+    options.ManifestFileName = ".vite/manifest.json";
+    options.Port = 5010;
+    options.Https = true;
+});
+
+builder.Services.AddScoped<IElementHelper, ElementHelper>();
+builder.Services.AddScoped<ILayoutViewModelFactory, LayoutViewModelFactory>();
 
 var app = builder.Build();
 

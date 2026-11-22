@@ -2,7 +2,7 @@ using Umbraco.Aspire.AppHost.Extensions;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var umbraco = builder.AddUmbracoProject<Projects.UmbracoBlog_Umbraco>("umbraco-blog");
+var umbraco = builder.AddUmbracoProject("umbraco-blog");
 
 builder
     .AddSqlServer(umbraco, "umbraco-blog-sql", "umbraco-blog-sqldb")

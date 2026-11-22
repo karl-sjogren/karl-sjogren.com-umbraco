@@ -1,0 +1,45 @@
+@inject Shorthand.Vite.Contracts.IViteService Vite
+@inherits UmbracoViewPage<LayoutViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+        <meta name="format-detection" content="telephone=no">
+
+        @if(Model.BlockSearchEngineIndexing) {
+            <meta name="robots" content="noindex, nofollow" />
+        }
+
+        <title>@Model.Title</title>
+        @if(!string.IsNullOrWhiteSpace(Model.MetaDescription)) {
+            <meta name="description" content="@Model.MetaDescription" />
+        }
+
+        <environment exclude="Development">
+            <link rel="modulepreload" href="@await Vite.GetAssetUrlAsync("scripts/index.mjs")" as="script" />
+            <link rel="preload" href="@await Vite.GetAssetUrlAsync("assets/fonts/font.woff2")" as="font" type="font/woff2" crossorigin>
+            <link rel="preload" href="@await Vite.GetAssetUrlAsync("assets/fonts/font2.woff2")" as="font" type="font/woff2" crossorigin>
+            <link rel="stylesheet" href="@await Vite.GetAssetUrlAsync("style.css")" />
+        </environment>
+
+        @RenderSection("Header", required: false)
+    </head>
+
+    <body>
+        <main>
+            @RenderBody()
+        </main>
+
+        <script src="@await Vite.GetAssetUrlAsync("scripts/index.mjs")" type="module"></script>
+
+        <environment names="Development">
+            <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+        </environment>
+    </body>
+</html>

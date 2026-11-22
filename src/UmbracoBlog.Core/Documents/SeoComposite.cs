@@ -26,6 +26,15 @@ public partial class SeoComposite {
     [UCFDescription("The SEO description for the page.")]
     [SeoTab]
     public partial string SeoDescription { get; }
+
+    [UCFProperty(
+        "Block Search Engine Indexing",
+        UmbracoBlogBooleanDataType.Alias,
+        SortOrder = 2,
+        Mandatory = false)]
+    [UCFDescription("Whether to block search engine indexing for the page.")]
+    [SeoTab]
+    public partial bool BlockSearchEngineIndexing { get; }
 }
 
 [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
