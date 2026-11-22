@@ -239,3 +239,27 @@ jobs:
         name: publish-artifacts
         path: ./artifacts/
         if-no-files-found: error
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    needs: net-build
+
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v7
+      with:
+        name: publish-artifacts
+        path: ./artifacts
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+        dry-run: true
+        local-dir: ./artifacts
+        server-dir: ./wwwroot
