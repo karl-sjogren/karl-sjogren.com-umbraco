@@ -103,6 +103,7 @@ jobs:
       with:
         name: frontend-artifacts
         path: ./src/UmbracoBlog.Umbraco/wwwroot/
+        include-hidden-files: true
 
   net-test:
     name: .NET tests
