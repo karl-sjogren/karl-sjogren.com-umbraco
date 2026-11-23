@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UmbracoBlog.ServiceDefaults\UmbracoBlog.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\UmbracoBlog.BackofficeExtension\UmbracoBlog.BackofficeExtension.csproj" />
     <ProjectReference Include="..\UmbracoBlog.Core\UmbracoBlog.Core.csproj" />
+    <ProjectReference Include="..\UmbracoBlog.ServiceDefaults\UmbracoBlog.ServiceDefaults.csproj" />
   </ItemGroup>
 
   <!-- Force include of Vite 5 manifest -->

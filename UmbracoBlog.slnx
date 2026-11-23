@@ -4,6 +4,7 @@
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/UmbracoBlog.AppHost/UmbracoBlog.AppHost.csproj" />
+    <Project Path="src/UmbracoBlog.BackofficeExtension/UmbracoBlog.BackofficeExtension.csproj" />
     <Project Path="src/UmbracoBlog.Core/UmbracoBlog.Core.csproj" />
     <Project Path="src/UmbracoBlog.Frontend/UmbracoBlog.Frontend.csproj" />
     <Project Path="src/UmbracoBlog.ServiceDefaults/UmbracoBlog.ServiceDefaults.csproj" />

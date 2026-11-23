@@ -1,6 +1,6 @@
 using Aspire.Hosting.Dotnet;
 
-namespace Umbraco.Aspire.AppHost.Extensions;
+namespace UmbracoBlog.AppHost.Extensions;
 
 internal static partial class IDistributedApplicationBuilderExtensions {
     public static IResourceBuilder<DotnetProjectResource> AddUmbracoProject(this IDistributedApplicationBuilder builder, string projectName) {

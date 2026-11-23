@@ -1,4 +1,4 @@
-namespace Umbraco.Aspire.AppHost.Extensions;
+namespace UmbracoBlog.AppHost.Extensions;
 
 internal static partial class IDistributedApplicationBuilderExtensions {
     public static IDistributedApplicationBuilder AddFrontendProject(

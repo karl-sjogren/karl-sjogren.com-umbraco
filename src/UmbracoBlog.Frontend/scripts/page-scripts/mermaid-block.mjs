@@ -16,12 +16,5 @@ export default (rootElement = document.body) => {
     ).then(({ svg }) => {
       content.innerHTML = svg;
     });
-
-    const button = container.querySelector('.code-block-copy-code-button');
-    if(button) {
-      button.addEventListener('click', () => {
-        navigator.clipboard.writeText(script);
-      });
-    }
   });
 };

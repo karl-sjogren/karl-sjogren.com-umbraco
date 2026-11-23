@@ -1,4 +1,4 @@
-using Umbraco.Aspire.AppHost.Extensions;
+using UmbracoBlog.AppHost.Extensions;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -8,6 +8,7 @@ builder
     .AddSqlServer(umbraco, "umbraco-blog-sql", "umbraco-blog-sqldb")
     .AddAzureStorage(umbraco, "umbraco-blog-storage", "umbraco-blog-media")
     .AddRedisCache(umbraco, "umbraco-blog-redis")
-    .AddFrontendProject();
+    .AddFrontendProject()
+    .AddBackofficeExtension(umbraco);
 
 builder.Build().Run();
