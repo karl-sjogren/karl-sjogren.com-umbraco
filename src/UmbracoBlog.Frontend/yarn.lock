@@ -609,6 +609,301 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mermaid-js/core@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/core@npm:13.0.0-alpha.3"
+  checksum: 10/52d017fea7882906d738fa034ce3673f14a2be1bbeb09a055dcb9b562fa04766f670328f60910000b14d9cff50d96f0452913b2b685aef7b46c131dd49256be9
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-agentflow@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-agentflow@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/8f481c9398f859a2861642ef158269fa13a6f7db74ceb3ebee636afa0b3774c081ccf946bbdb2d93863d92aaecb93e3d3e39d54be234d4d359b6901e0d28ebe3
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-architecture@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-architecture@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/316045524493dabb57eeeafee3bc418778c0e6bee7a2bbb94a06de7fc932c75a81f2c4418b94e814dcf501954979ac288e0b1769a3a5b16016635c0cee195cf6
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-block@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-block@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/b70bd5ac2e6eb528f5eddbc890503caff6022d27173b408d1c111347c3c1adf14ba3a1c709b44d1bf15067f885ee65d2eaed8815e37079db8c9984007c7819d6
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-c4@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-c4@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/13b5d904cd7518d9006237e8d221cd7c26b36f3ad5070b9be15660c870d6b9a23d4f4912b726ed531835c6e752b5c82146edab7f3507af6cf06d9b09e6bd4f65
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-class@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-class@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/c1320dc7029ffbc0e11bc36840a671e0114cc952a1f81fb8283b94f5af5f3da485b1453c664fe26a55c8cd0e49f0702f292fea59d87215b1bc0f0ab8989e5c7e
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-cynefin@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-cynefin@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/a6b91798eb5eeb18a557b5d5d64ebbc08bbe37faa87dec48699e62ee0df4aba8c99053050309ceb9f4a7e138694efbe44ede4fc87bd8a7521590c75cf4d95907
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-er@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-er@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/0d2ae3bc9bec0a1a39a065d5ed72a672d423f8e6ce0ac0bba8a0d50af157da6d09e94da3620ee13a2b6aaf39ad07d1f9efe62db57a052eaf0e53d54fe0810d00
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-eventmodeling@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-eventmodeling@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/45b17e2fc16fc450f5ac6a156040acaa3190c22bbe964428e8067b9d530ba3f43ea2ba17f9b2f2eaf2fa99de9eab421846a3d01e5a199dab2ba805e8865c1df9
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-flowchart@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-flowchart@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/083643eab7d95084ad17092c68584337a5ef9f35f060e6a98ea4167ab3a1504a8af55de4add913f24caa522e367e2e8e973d05f028caf76a46df46262164e522
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-gantt@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-gantt@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/6a7310a249d19c841e2e6572d80c36bb0c53e61dfbb910e34c06ca90184abdd8c08288e7da2144eeb5b9e135c78e8136a0d9aebcacd2df686b5cb8a04c969ecb
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-gitgraph@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-gitgraph@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/7fe77cbb47a31a3b3fd5f09549684fcc3d069b6ee3afeed9988a814b371b57e68b1c7988a9ac5c31038599a182dbd9a14328c764b98520adb8a9849788dc6272
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-info@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-info@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/8719e1fd019269893abe3a09986c52b8ac77274fff6e838ab83a27677c3ff3838e44bb8ddf56b11a8d5db56dcd148f765f7472cee6c84149c379a58cd13972ac
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-ishikawa@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-ishikawa@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/700f7ea92108c65b95f98dace393acc54007914345877995613057b609881fea9e8834107d4e96411a3942f4df7042ed93f4435b007895b116af4bbf3135445d
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-journey@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-journey@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/bec162d1fbc5c81c76356bb930b9f6132237cc22dfd358d87de70fb9d499aa9d9f5b641b89de14ecdaea733ece3c3299ce8108444564c5e530abd50f40ae83f8
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-kanban@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-kanban@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/86ba238f9f0828924d9adb827eb3d13e3a1d3fa001eb929832d72807e04190d310fffb8a43be990af7e176482c6dfa9c37d89f0c3bbf5cf6c589f28e3d44a15c
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-mindmap@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-mindmap@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/9e7e74493e17f039c4ef01a49e12fedb70382f1f019bad700c13becc8cdec776dfd359b158181df4dc956895f28b444548bbcd52c8bc8c55534a26a4e2ecd395
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-packet@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-packet@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/a8d39bef42eeeb5996474a7f788eed1d8bce9b705ee315b337d72dc57d0616d68884d0dad831b37fd8dcbd978d0f7ad21e2aa60def52cf385c11373bc4101097
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-pie@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-pie@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/8bdee09208ac74d4fced0764aff493a6efc9cb8a74c04ea1d7373d1c7e0ae556da72d582adb4902a4582fb1fe48a9cc44542221846f9f33119bd20fb71b7f14d
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-quadrant@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-quadrant@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/7bc9ef96f7c0b9b3120a33c9342af6c9fb4b6ce4f008e33d54629c9f39765c2d86fc7be32bed6e9dbeaef3b9524f4a9ea104dc3a033e503f55514382fe1c79db
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-radar@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-radar@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/a10bac45bf6848db551f482eecf7074d70f54a41db017c9e3c8690ddaf9af8832223590565ce49c2ef57328a7bd4658c6fa9c16a385dcdcb2f76aa491e347c7f
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-railroad@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-railroad@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/bfc252314c7e8452ce93766abf553ff0c0e0992336488fe5042ae5136c67d5ac5eb2d2f4b1edec42dcf0ef42d2f69f963867b7bc9c7ab48949ed10fdd38cb2bf
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-requirement@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-requirement@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/8b57c0cd66de464e7dac11bc66fdfe8622ff619171802cdf7f2565c2dc758caacc60dcb247cb6a167935892014355d00ec52d6ee4fb671ed55db6c3c35e7a01c
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-sankey@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-sankey@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/c4e5b6e9a8b96840c53a706002e49ee56b63fd779c2370b528b3e97e9679bb1afaaecb2ba38912fa8d952f8022f67a2a898f822dd89d039826dc5e41a8de16c5
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-sequence@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-sequence@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/9533cbccf600c572be7db6a1069eb85e6990422fea28d723acafb14ac7647257f4a596ae129e214292d9e9f055cdd4b7c25ca877c596e60fcaa80f610e799841
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-state@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-state@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/c0c50984d1dcdef6686ec961676936090887ca66806463ba738d5a8d30c24771ab05f963e68040ff1c4743e42fb73548dca5cb53b16513800769e24610400f9c
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-timeline@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "@mermaid-js/diagram-timeline@npm:13.0.0-alpha.3"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/7ef6dd9e097fdc46d6de740877c5c15f1b923a38260a7e2a61c316caf6a05e09e337152523aeac39cfe1ba550fd3eb6b90a5ee030e99579247d7c1c5d9ab6000
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-treemap@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-treemap@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/9c1179f4634abdd07c30028de0db9913c478821d72ed02af3687db09920109a3394a7b758f9e2bf6c1b83b60d34e565f8349f1171bad6d404265367e09f09d7d
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-treeview@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-treeview@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/dafcbdd4be55627f9dba11cddc5b9c5918f6eb21295ebadf4f8cf0e133bc0b21e5171ad92ca97ecf0cc6903664f1594d0bc7855a08f282929eb07886490f4e5b
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-usecase@npm:13.0.0-alpha.1":
+  version: 13.0.0-alpha.1
+  resolution: "@mermaid-js/diagram-usecase@npm:13.0.0-alpha.1"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/6d57a16da432946934cd5d73fc213a1cbaab34b72a88ea26ab605191eff4f7a914431223598d9347cbc38aeb8e2268aad3600af324733e15ec4363984c8b27a0
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-venn@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-venn@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/44abbaa8e489ece0fecd0e7f5f5f677787131e172daa6a1d94c8898c1b4e18d81371f22e676e3584454e090108cf264f277333536b1f908c94547b417baae163
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-wardley@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-wardley@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/6de47bc479b4702421e3820e3e653cfa5528c4b516cfb75c38f57a3ab2cb6b7706e92ca1984e1fe1771f89a3e488cbbe51c58739ebae94ee29008db9800e9ef5
+  languageName: node
+  linkType: hard
+
+"@mermaid-js/diagram-xychart@npm:13.0.0-alpha.2":
+  version: 13.0.0-alpha.2
+  resolution: "@mermaid-js/diagram-xychart@npm:13.0.0-alpha.2"
+  peerDependencies:
+    "@mermaid-js/core": 13.0.0-alpha.3
+  checksum: 10/1c756e9e5853eeac7c70eaad470b3e8db6c28fdc50a2fb03c009696d551e137fad315bf6e2d81a614054f2ba9cad7a1ac866bd2c2a130493139b47fd4b32b6bb
+  languageName: node
+  linkType: hard
+
 "@napi-rs/wasm-runtime@npm:1.2.6":
   version: 1.2.6
   resolution: "@napi-rs/wasm-runtime@npm:1.2.6"
@@ -2017,6 +2312,7 @@ __metadata:
     eslint-plugin-testing-library: "npm:^7.16.2"
     jsdom: "npm:^31.0.1"
     jsdom-testing-mocks: "npm:^1.16.0"
+    mermaid: "npm:13.0.0-alpha.3"
     postcss: "npm:^8.5.33"
     postcss-scss: "npm:^4.0.9"
     rollup-plugin-copy: "npm:^3.5.0"
@@ -4383,6 +4679,49 @@ __metadata:
   version: 1.4.1
   resolution: "merge2@npm:1.4.1"
   checksum: 10/7268db63ed5169466540b6fb947aec313200bcf6d40c5ab722c22e242f651994619bcd85601602972d3c85bd2cc45a358a4c61937e9f11a061919a1da569b0c2
+  languageName: node
+  linkType: hard
+
+"mermaid@npm:13.0.0-alpha.3":
+  version: 13.0.0-alpha.3
+  resolution: "mermaid@npm:13.0.0-alpha.3"
+  dependencies:
+    "@mermaid-js/core": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-agentflow": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-architecture": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-block": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-c4": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-class": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-cynefin": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-er": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-eventmodeling": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-flowchart": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-gantt": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-gitgraph": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-info": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-ishikawa": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-journey": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-kanban": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-mindmap": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-packet": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-pie": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-quadrant": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-radar": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-railroad": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-requirement": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-sankey": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-sequence": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-state": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-timeline": "npm:13.0.0-alpha.3"
+    "@mermaid-js/diagram-treemap": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-treeview": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-usecase": "npm:13.0.0-alpha.1"
+    "@mermaid-js/diagram-venn": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-wardley": "npm:13.0.0-alpha.2"
+    "@mermaid-js/diagram-xychart": "npm:13.0.0-alpha.2"
+  bin:
+    mermaid: dist/cli.js
+  checksum: 10/be3ca2eed6ebbbd0fff628ccaab0cd43f3267de6a98b25211150ca9fd80655e4c19a6f2d3aacd15cc89f1a665c39445fc914184b90550b25175986661e68614f
   languageName: node
   linkType: hard
 

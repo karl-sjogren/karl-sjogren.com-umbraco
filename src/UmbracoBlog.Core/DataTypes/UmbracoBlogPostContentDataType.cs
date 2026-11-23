@@ -18,7 +18,8 @@ internal sealed class UmbracoBlogPostContentConfiguration : UmbracoEditors.Block
             new(typeof(JavascriptCodeBlock)) { Label = "Javascript block", IconColor = "#e76317", BackgroundColor = "#1b4e89" },
             new(typeof(ShellCodeBlock)) { Label = "Shell block", IconColor = "#6adb1e", BackgroundColor = "#1b4e89" },
             new(ContentBlock.ModelTypeAlias) { Label = "Content block", BackgroundColor = "#63ece6" },
-            new(ImageBlock.ModelTypeAlias) { Label = "Image block", BackgroundColor = "#f0a500" }
+            new(ImageBlock.ModelTypeAlias) { Label = "Image block", BackgroundColor = "#f0a500" },
+            new(MermaidBlock.ModelTypeAlias) { Label = "Mermaid block", BackgroundColor = "#1b4e89" }
         ];
         UseInlineEditingAsDefault = true;
         CreateModalSize = "medium";
