@@ -10,11 +10,17 @@
     "generate-client": "node scripts/generate-openapi.js https://localhost:5000/umbraco/openapi/umbracoblogbackofficeextension.json"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "7.3.1",
+    "@fortawesome/free-brands-svg-icons": "7.3.1",
+    "@fortawesome/free-regular-svg-icons": "7.3.1",
+    "@fortawesome/free-solid-svg-icons": "7.3.1",
     "@hey-api/openapi-ts": "^0.99.0",
     "@umbraco-cms/backoffice": "^17.8.2",
     "chalk": "^6.0.1",
     "cross-env": "^10.1.0",
+    "lit": "^3.3.1",
     "node-fetch": "^3.3.2",
+    "sass": "^1.108.2",
     "typescript": "^7.0.2",
     "vite": "^8.3.8"
   }

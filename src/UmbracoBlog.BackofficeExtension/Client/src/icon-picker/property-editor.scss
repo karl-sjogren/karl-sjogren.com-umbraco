@@ -1,0 +1,21 @@
+.icon-preview {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.empty {
+  font-style: italic;
+}
+
+#choose-icon,
+uui-ref-list {
+  width: 100%;
+}
