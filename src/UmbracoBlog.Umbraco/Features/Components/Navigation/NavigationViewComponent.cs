@@ -69,6 +69,24 @@ public record NavigationItem {
 
         Title = name!;
         Url = friendlyPublishedContentHelper.Url(content);
-        Icon = content.NavigationIcon;
+
+        if(string.IsNullOrEmpty(content.NavigationIcon)) {
+            Icon = null;
+        } else {
+            Icon = ParseIcon(content.NavigationIcon);
+        }
+    }
+
+    internal static string ParseIcon(string? icon) {
+        if(string.IsNullOrEmpty(icon)) {
+            return "fas fa-circle";
+        }
+
+        var parts = icon.Split('|');
+        if(parts.Length != 2) {
+            return "fas fa-circle";
+        }
+
+        return parts[0] + " fa-" + parts[1];
     }
 };

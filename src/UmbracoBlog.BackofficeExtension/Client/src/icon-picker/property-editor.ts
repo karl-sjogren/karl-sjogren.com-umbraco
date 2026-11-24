@@ -1,4 +1,4 @@
-import { css, customElement, html, nothing, property, state, unsafeCSS, unsafeSVG } from "@umbraco-cms/backoffice/external/lit";
+import { customElement, html, nothing, property, state, unsafeCSS, unsafeSVG } from "@umbraco-cms/backoffice/external/lit";
 import { UmbLitElement } from "@umbraco-cms/backoffice/lit-element";
 import { UmbChangeEvent } from "@umbraco-cms/backoffice/event";
 import { type UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
@@ -41,7 +41,6 @@ export default class IconPickerPropertyEditorElement extends UmbLitElement imple
 
         try {
             const selected = await modal.onSubmit();
-            console.log('Selected icon:', selected);
 
             const iconString = selected.prefix + "|" + selected.iconName;
 

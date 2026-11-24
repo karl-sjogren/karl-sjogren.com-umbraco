@@ -105,6 +105,38 @@ jobs:
         path: ./src/UmbracoBlog.Umbraco/wwwroot/
         include-hidden-files: true
 
+
+  backoffice-build:
+    name: Backoffice Extension build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v7
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v7
+      with:
+        node-version: lts/*
+        check-latest: true
+
+    - name: Run Yarn
+      run: yarn --immutable --immutable-cache
+      working-directory: ./src/UmbracoBlog.BackofficeExtension/Client
+
+    - name: Build Backoffice Extension
+      run: yarn build
+      working-directory: ./src/UmbracoBlog.BackofficeExtension/Client
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v7
+      with:
+        name: backoffice-artifacts
+        path: ./src/UmbracoBlog.BackofficeExtension/wwwroot/
+        include-hidden-files: true
+
   net-test:
     name: .NET tests
     runs-on: ubuntu-latest
@@ -216,7 +248,7 @@ jobs:
     name: .NET build
     runs-on: ubuntu-latest
 
-    needs: [ net-test, frontend-build ]
+    needs: [ net-test, frontend-build, backoffice-build ]
 
     steps:
     - name: Checkout sources
@@ -232,6 +264,12 @@ jobs:
       with:
         name: frontend-artifacts
         path: ./src/UmbracoBlog.Umbraco/wwwroot/
+
+    - name: Download backoffice build artifacts
+      uses: actions/download-artifact@v7
+      with:
+        name: backoffice-artifacts
+        path: ./src/UmbracoBlog.BackofficeExtension/wwwroot/
 
     - name: Restore NuGet packages
       run: dotnet restore --verbosity minimal

@@ -19,7 +19,7 @@ public partial class NavigationComposite {
 
     [UCFProperty(
         "Navigation icon",
-        UmbracoBlogTextDataType.Alias,
+        UmbracoBlogIconPickerDataType.Alias,
         SortOrder = 0,
         Mandatory = false)]
     [UCFDescription("The navigation icon for the page.")]
