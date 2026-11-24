@@ -19,3 +19,9 @@ to `true` in the consuming project to opt out. The consumer must reference
 `Microsoft.CodeAnalysis.BannedApiAnalyzers` for these rules to be enforced.
 
 Uses Font Awesome for icons, see [Font Awesome](https://fontawesome.com).
+
+## Thats a cool Icon Picker btw
+
+Sure is, it allows you to pick Font Awesome icons easily in the backoffice.
+You want to use it? Just copy the backoffice extension from this project to
+your own Umbraco project.
