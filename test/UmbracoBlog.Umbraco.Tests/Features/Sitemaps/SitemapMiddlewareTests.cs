@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using Umbraco.Cms.Web.Common.Routing;
 using UmbracoBlog.Umbraco.Features.Sitemaps;
 
-namespace UmbracoBlog.Umbraco.Tests.Sitemaps;
+namespace UmbracoBlog.Umbraco.Tests.Features.Sitemaps;
 
 public class SitemapMiddlewareTests {
     [Theory]
