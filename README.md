@@ -20,6 +20,10 @@ to `true` in the consuming project to opt out. The consumer must reference
 
 Uses Font Awesome for icons, see [Font Awesome](https://fontawesome.com).
 
+The design borrows heavily from the
+[Chirpy jekyll theme](https://github.com/cotes2020/jekyll-theme-chirpy) that I
+used for my previous blog.
+
 ## Thats a cool Icon Picker btw
 
 Sure is, it allows you to pick Font Awesome icons easily in the backoffice.
