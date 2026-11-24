@@ -1,12 +1,14 @@
+@use '../variables';
+
 :root {
   --indent-offset: 1rem;
 }
 
 .code-block-container {
   padding: 0;
-  background-color: #1e1e1e;
+  background-color: variables.$surface-background;
   border-radius: 0.5rem;
-  box-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
+  box-shadow: variables.$card-shadow;
   margin-bottom: 2rem;
 
   .code-block-header {

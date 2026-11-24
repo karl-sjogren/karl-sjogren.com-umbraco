@@ -1,3 +1,5 @@
+@use 'variables';
+
 .sidebar-toggle {
   position: fixed;
   top: 1rem;
@@ -8,7 +10,7 @@
   border: 0;
 
   font-size: 1.3rem;
-  color: #717070;
+  color: variables.$sidebar-muted-color;
   background: none;
 
   .site-title {
@@ -34,10 +36,10 @@
   padding: 2rem 2rem;
   box-sizing: border-box;
 
-  background-color: #1e1e1e;
-  border-right: 1px solid #292929;
+  background-color: variables.$surface-background;
+  border-right: 1px solid variables.$sidebar-border-color;
 
-  font-family: 'Source Sans 3 VF', sans-serif;
+  font-family: variables.$sidebar-font-family;
 
   transition: left 0.5s ease-in-out;
 
@@ -51,7 +53,7 @@
     top: 1rem;
 
     background: none;
-    color: #717070;
+    color: variables.$sidebar-muted-color;
     border: 0;
   }
 
@@ -65,13 +67,13 @@
     a:visited,
     a:hover,
     a:active {
-      color: #717070;
+      color: variables.$sidebar-muted-color;
       text-decoration: none;
       transition: color 0.3s ease-in-out;
     }
 
     a:hover {
-      color: rgb(255, 255, 255, 0.95);
+      color: variables.$sidebar-hover-color;
     }
 
     .avatar-link {
@@ -116,9 +118,9 @@
       gap: 1rem;
 
       padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      border: 1px solid #4e4e4e;
-      background-color: #222;
+      border-radius: variables.$control-border-radius;
+      border: 1px solid variables.$control-border-color;
+      background-color: variables.$control-background;
 
       transition: all 0.3s ease-in-out;
 
@@ -126,14 +128,14 @@
       &:visited,
       &:hover,
       &:active {
-        color: #868686;
+        color: variables.$control-text-color;
         text-decoration: none;
         text-transform: uppercase;
       }
 
       &:hover {
-        background-color: #333;
-        color: rgb(255, 255, 255, 0.95);
+        background-color: variables.$control-hover-background;
+        color: variables.$sidebar-hover-color;
       }
     }
   }
@@ -147,7 +149,7 @@
     padding: 2rem 0;
 
     font-size: 1.3rem;
-    color: #717070;
+    color: variables.$sidebar-muted-color;
 
     a {
       transition: color 0.3s ease-in-out;
@@ -156,18 +158,18 @@
       &:visited,
       &:hover,
       &:active {
-        color: #868686;
+        color: variables.$control-text-color;
         text-decoration: none;
       }
 
       &:hover {
-        color: rgb(255, 255, 255, 0.95);
+        color: variables.$sidebar-hover-color;
       }
     }
   }
 }
 
-@media (width >= 1440px) {
+@media (width >= variables.$desktop-sidebar-breakpoint) {
   .sidebar-toggle {
     display: none;
   }

@@ -1,3 +1,5 @@
+@use '../variables';
+
 .blog-archive {
   .blog-year {
     position: relative;
@@ -22,7 +24,7 @@
       height: 72px;
       left: 79px;
       bottom: 16px;
-      background-color: rgb(63, 65, 68);
+      background-color: variables.$archive-line-color;
     }
 
     &:after {
@@ -34,9 +36,9 @@
       height: 12px;
       left: 12.5px;
       border: 3px solid;
-      background-color: rgb(63, 65, 68);
-      border-color: rgb(150, 152, 156);
-      box-shadow: 0 0 2px 0 #c2c6cc;
+      background-color: variables.$archive-line-color;
+      border-color: variables.$archive-marker-color;
+      box-shadow: variables.$archive-marker-shadow;
       z-index: 1;
     }
   }
@@ -84,10 +86,10 @@
           width: 8px;
           height: 8px;
 
-          border: 3px solid rgb(150, 152, 156);
+          border: 3px solid variables.$archive-marker-color;
           border-radius: 50%;
-          background-color: rgb(150, 152, 156);
-          box-shadow: 0 0 2px 0 #c2c6cc;
+          background-color: variables.$archive-marker-color;
+          box-shadow: variables.$archive-marker-shadow;
           z-index: 1;
         }
       }
@@ -107,7 +109,7 @@
           width: 4px;
           height: 54px;
 
-          background-color: rgb(63, 65, 68);
+          background-color: variables.$archive-line-color;
         }
       }
     }

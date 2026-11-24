@@ -1,5 +1,7 @@
+@use 'variables';
+
 @font-face {
-  font-family: 'Source Sans 3 VF';
+  font-family: variables.$sidebar-font-name;
   font-style: normal;
   font-weight: 200 900;
   font-display: swap;
@@ -7,7 +9,7 @@
 }
 
 @font-face {
-  font-family: 'Source Sans 3 VF';
+  font-family: variables.$sidebar-font-name;
   font-style: italic;
   font-weight: 200 900;
   font-display: swap;
@@ -15,7 +17,7 @@
 }
 
 @font-face {
-  font-family: 'Google Sans Code';
+  font-family: variables.$code-font-name;
   font-style: italic;
   font-weight: normal;
   font-display: swap;
@@ -23,7 +25,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-Thin.woff2') format('woff2');
   font-weight: 100;
   font-style: normal;
@@ -31,7 +33,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-ThinItalic.woff2') format('woff2');
   font-weight: 100;
   font-style: italic;
@@ -39,7 +41,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
@@ -47,7 +49,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-LightItalic.woff2') format('woff2');
   font-weight: 300;
   font-style: italic;
@@ -55,7 +57,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
@@ -63,7 +65,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-Italic.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
@@ -71,7 +73,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-Bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
@@ -79,7 +81,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-BoldItalic.woff2') format('woff2');
   font-weight: bold;
   font-style: italic;
@@ -87,7 +89,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-Black.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
@@ -95,7 +97,7 @@
 }
 
 @font-face {
-  font-family: Lato;
+  font-family: variables.$body-font-name;
   src: url('../assets/fonts/Lato/Lato-BlackItalic.woff2') format('woff2');
   font-weight: 900;
   font-style: italic;

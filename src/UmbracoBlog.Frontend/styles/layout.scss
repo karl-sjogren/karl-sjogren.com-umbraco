@@ -1,8 +1,9 @@
 @use 'sidebar';
+@use 'variables';
 
 body {
-  font-family: Lato, sans-serif;
-  background-color: rgb(27, 27, 30);
+  font-family: variables.$body-font-family;
+  background-color: variables.$page-background;
 }
 
 main {
@@ -24,15 +25,15 @@ main {
   }
 
   a {
-    color: rgb(138, 180, 248);
-    border-bottom: 1px solid rgb(82, 108, 150);
+    color: variables.$link-color;
+    border-bottom: 1px solid variables.$link-border-color;
     text-decoration: none;
 
     &:visited,
     &:hover,
     &:active {
-      color: #d2603a;
-      border-bottom: 1px solid #d2603a;
+      color: variables.$link-active-color;
+      border-bottom: 1px solid variables.$link-active-color;
       text-decoration: none;
     }
   }
@@ -42,20 +43,20 @@ main {
     margin: 0 auto;
     padding: 0;
 
-    color: rgb(175, 176, 177);
+    color: variables.$article-text;
     line-height: 1.75;
 
     h2,
     h3,
     h4 {
-      color: rgb(175, 176, 177);
+      color: variables.$article-text;
 
       a {
         &,
         &:visited,
         &:hover,
         &:active {
-          color: rgb(175, 176, 177);
+          color: variables.$article-text;
           border-bottom: 0;
           text-decoration: none;
         }
@@ -84,18 +85,18 @@ main {
         padding: 0 0.5rem;
         box-sizing: border-box;
 
-        border: 1px solid #4e4e4e;
-        background-color: #222;
-        border-radius: 0.5rem;
+        border: 1px solid variables.$control-border-color;
+        background-color: variables.$control-background;
+        border-radius: variables.$control-border-radius;
 
         i {
-          color: #4e4e4e;
+          color: variables.$control-border-color;
         }
 
         &:focus-within {
-          color: hsl(0deg, 0%, 100%, 0.95);
-          outline: 1px solid #868686;
-          border-radius: 0.5rem;
+          color: variables.$control-focus-color;
+          outline: 1px solid variables.$control-text-color;
+          border-radius: variables.$control-border-radius;
         }
 
         input {
@@ -103,7 +104,7 @@ main {
           height: 2rem;
 
           font-size: 1rem;
-          color: #868686;
+          color: variables.$control-text-color;
 
           padding: 0 0.5rem;
           box-sizing: border-box;
@@ -122,7 +123,7 @@ main {
   }
 }
 
-@media (width >= 1000px) {
+@media (width >= variables.$desktop-right-panel-breakpoint) {
   main {
     .right-panel {
       display: block;
@@ -130,7 +131,7 @@ main {
   }
 }
 
-@media (width >= 1440px) {
+@media (width >= variables.$desktop-sidebar-breakpoint) {
   main {
     .content-wrapper {
       margin-left: 20rem;

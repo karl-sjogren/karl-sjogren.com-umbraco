@@ -1,3 +1,5 @@
+@use '../variables';
+
 .start-page {
   .blog-post-list {
     list-style: none;
@@ -11,9 +13,9 @@
       padding: 1.75rem 1.75rem 1.25rem 1.75rem;
       box-sizing: border-box;
 
-      background-color: #1e1e1e;
+      background-color: variables.$surface-background;
       border-radius: 1rem;
-      box-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
+      box-shadow: variables.$card-shadow;
 
       h2 {
         margin-top: 0;

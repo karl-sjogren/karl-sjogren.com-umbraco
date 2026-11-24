@@ -1,0 +1,43 @@
+// Fonts
+$body-font-name: 'Lato';
+$sidebar-font-name: 'Source Sans 3 VF';
+$code-font-name: 'Google Sans Code';
+$body-font-family: $body-font-name, sans-serif;
+$sidebar-font-family: $sidebar-font-name, sans-serif;
+$code-font-family: $code-font-name, monospace;
+
+// Background colors
+$page-background: rgb(27, 27, 30);
+$surface-background: #1e1e1e;
+$article-text: rgb(175, 176, 177);
+
+// Link colors
+$link-color: rgb(138, 180, 248);
+$link-border-color: rgb(82, 108, 150);
+$link-active-color: #d2603a;
+
+// Control colors and styles
+$control-background: #222;
+$control-border-color: #4e4e4e;
+$control-text-color: #868686;
+$control-hover-background: #333;
+$control-focus-color: hsl(0deg, 0%, 100%, 0.95);
+$control-border-radius: 0.5rem;
+
+// Sidebar colors and styles
+$sidebar-muted-color: #717070;
+$sidebar-border-color: #292929;
+$sidebar-hover-color: rgb(255, 255, 255, 0.95);
+
+// Archive colors and styles
+$archive-line-color: rgb(63, 65, 68);
+$archive-marker-color: rgb(150, 152, 156);
+$archive-marker-shadow: 0 0 2px 0 #c2c6cc;
+
+// Misc styles
+$search-hit-type-color: #4e4e4e;
+$card-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
+
+// Breakpoints
+$desktop-sidebar-breakpoint: 1440px;
+$desktop-right-panel-breakpoint: 1000px;
