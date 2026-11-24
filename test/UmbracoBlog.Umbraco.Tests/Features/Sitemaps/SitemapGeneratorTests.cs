@@ -45,7 +45,7 @@ public class SitemapGeneratorTests {
 
         var stream = new MemoryStream();
         var entries = new SitemapEntry[] {
-            new("https://doofenshmirtz.inc/posts/platypus-problems", new DateTime(2026, 11, 24, 22, 38, 00))
+            new("https://doofenshmirtz.inc/posts/platypus-problems", new DateTime(2026, 11, 24, 22, 38, 00, DateTimeKind.Utc))
         };
 
         // Act
@@ -61,7 +61,7 @@ public class SitemapGeneratorTests {
 <urlset xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://doofenshmirtz.inc/posts/platypus-problems</loc>
-    <lastmod>2026-11-24T22:38:00+01:00</lastmod>
+    <lastmod>2026-11-24T22:38:00+00:00</lastmod>
   </url>
 </urlset>
 """, StringCompareShould.IgnoreLineEndings);

@@ -89,7 +89,7 @@ public class SitemapGenerator : ISitemapGenerator {
             await writer.WriteStartElementAsync(null, "url", null);
 
             await writer.WriteElementStringAsync(null, "loc", null, entry.Url);
-            await writer.WriteElementStringAsync(null, "lastmod", null, entry.LastModified.ToString("yyyy-MM-ddTHH:mm:sszzz"));
+            await writer.WriteElementStringAsync(null, "lastmod", null, entry.LastModified.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:sszzz"));
 
             await writer.WriteEndElementAsync();
         }
