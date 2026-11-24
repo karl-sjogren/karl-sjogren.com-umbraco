@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <Using Include="Umbraco.Cms.Core.Constants" Alias="UmbracoConstants" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Umbraco.Cms.Core.Constants" Alias="UmbracoConstants" />
     <Using Include="Shorthand.UmbracoCodeFirst.PropertyEditors" />
   </ItemGroup>
 

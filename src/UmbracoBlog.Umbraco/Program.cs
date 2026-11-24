@@ -1,4 +1,5 @@
 
+using RobotsTxt;
 using Shorthand.Vite;
 using UmbracoBlog.Core.Contracts;
 using UmbracoBlog.Core.Helpers;
@@ -15,11 +16,13 @@ builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddWebsite()
     .AddComposers()
+    .ConfigureAspireServices(builder)
     .Build();
 
 builder.AddServiceDefaults();
 
 builder.Services.AddMvc().AddFeatureFolders();
+builder.AddRobotsTxt();
 
 builder.Services.AddVite(options => {
     options.ManifestFileName = ".vite/manifest.json";
@@ -33,6 +36,8 @@ builder.Services.AddScoped<ILayoutViewModelFactory, LayoutViewModelFactory>();
 var app = builder.Build();
 
 await app.BootUmbracoAsync();
+
+app.UseRobotsTxt();
 
 app.UseUmbraco()
     .WithMiddleware(u => {

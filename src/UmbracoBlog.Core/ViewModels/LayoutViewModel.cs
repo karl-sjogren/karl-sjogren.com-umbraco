@@ -8,6 +8,7 @@ public class LayoutViewModel {
     public required string CanonicalUrl { get; init; }
     public string? SeoTitle { get; set; }
     public string? MetaDescription { get; init; }
+    public bool HideSidebarSearch { get; set; }
     public bool BlockSearchEngineIndexing { get; init; }
     public required SiteSettingsElement? SiteSettings { get; init; }
 

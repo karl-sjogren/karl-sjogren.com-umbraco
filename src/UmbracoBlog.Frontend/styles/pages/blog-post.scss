@@ -5,6 +5,7 @@
     .blog-post-meta {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       gap: 1rem;
 
       font-size: 0.8rem;

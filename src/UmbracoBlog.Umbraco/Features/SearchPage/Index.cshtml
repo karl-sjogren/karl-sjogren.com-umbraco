@@ -1,0 +1,29 @@
+﻿@using UmbracoBlog.Umbraco.Features.SearchPage
+@attribute [UCFTemplate("Search Page")]
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<SearchPageViewModel>>
+
+<article class="search-page">
+    <h2>Search</h2>
+
+    <form method="get" action="">
+        <div class="form-group">
+            <input type="search" name="searchQuery" class="form-control" placeholder="Search..." value="@Model.ViewModel.SearchQuery">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+        </div>
+    </form>
+
+    @if(Model.ViewModel.SearchHits.Any()) {
+        <h3>Results (@Model.ViewModel.SearchHits.Count)</h3>
+
+        <ol class="search-results">
+            @foreach(var hit in Model.ViewModel.SearchHits) {
+                <li class="search-hit">
+                    <span class="search-hit-type">@hit.Type</span>
+                    <a href="@hit.Url">@hit.Title</a>
+                </li>
+            }
+        </ol>
+    } else {
+        <p>No search results found.</p>
+    }
+</article>

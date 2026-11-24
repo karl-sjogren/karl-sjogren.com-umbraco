@@ -9,7 +9,8 @@ internal static partial class IDistributedApplicationBuilderExtensions {
             .WithEnvironment("Umbraco__CMS__Unattended__InstallUnattended", bool.TrueString)
             .WithEnvironment("Umbraco__CMS__Unattended__UnattendedUserName", "blog")
             .WithEnvironment("Umbraco__CMS__Unattended__UnattendedUserEmail", "blog@example.com")
-            .WithEnvironment("Umbraco__CMS__Unattended__UnattendedUserPassword", "password123!");
+            .WithEnvironment("Umbraco__CMS__Unattended__UnattendedUserPassword", "password123!")
+            .WithEnvironment("RUNNING_ASPIRE", bool.TrueString);
 
         if(builder.ExecutionContext.IsRunMode) {
             project

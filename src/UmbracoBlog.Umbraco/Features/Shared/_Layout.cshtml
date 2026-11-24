@@ -28,6 +28,11 @@
             <link rel="stylesheet" href="@await Vite.GetAssetUrlAsync("style.css")" />
         </environment>
 
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png">
+        <link rel="shortcut icon" href="/static/favicons/favicon.ico">
+
         @RenderSection("Header", required: false)
     </head>
 
@@ -37,7 +42,7 @@
             <span class="site-title">@Model.SiteSettings?.SiteName</span>
         </button>
 
-        <aside aria-label="Sidebar">
+        <aside class="sidebar" aria-label="Sidebar">
             <button class="sidebar-close">
                 <i class="fa-solid fa-xmark"></i>
             </button>
@@ -80,6 +85,20 @@
             <div class="content-wrapper">
                 @RenderBody()
             </div>
+
+            <aside class="right-panel">
+                @* TODO: Make optional/configurable *@
+                @if(!Model.HideSidebarSearch) {
+                    <form class="search-form" action="/search" method="get">
+                        <div class="form-group">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" name="searchQuery" placeholder="Search..." />
+                        </div>
+                    </form>
+                }
+
+                @RenderSection("RightPanel", required: false)
+            </aside>
         </main>
 
         <script src="@await Vite.GetAssetUrlAsync("scripts/index.mjs")" type="module"></script>

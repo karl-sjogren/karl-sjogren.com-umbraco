@@ -19,7 +19,7 @@ public partial class ContentPage {
         UmbracoBlogTextDataType.Alias,
         SortOrder = 0,
         Mandatory = true)]
-    [UCFDescription("The main heading for the blog post.")]
+    [UCFDescription("The main heading for the content page.")]
     [ContentTab]
     public partial string MainHeading { get; }
 
@@ -27,7 +27,7 @@ public partial class ContentPage {
         "Main content",
         UmbracoBlogPostContentDataType.Alias,
         SortOrder = 1)]
-    [UCFDescription("The main content for the blog post.")]
+    [UCFDescription("The main content for the content page.")]
     [ContentTab]
     public partial BlockListModel MainContent { get; }
 }

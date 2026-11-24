@@ -9,7 +9,12 @@ namespace UmbracoBlog.Core.Documents;
     "Start Page",
     Icon = UmbracoIcons.Star,
     AllowAsRoot = true,
-    AllowedChildAliases = new[] { BlogIndex.ModelTypeAlias, ContentPage.ModelTypeAlias, BlogArchive.ModelTypeAlias },
+    AllowedChildAliases = new[] {
+        BlogIndex.ModelTypeAlias,
+        ContentPage.ModelTypeAlias,
+        BlogArchive.ModelTypeAlias,
+        SearchPage.ModelTypeAlias
+    },
     DefaultTemplateAlias = UmbracoTemplates.StartPage.Index,
     AllowedTemplateAliases = new[] { UmbracoTemplates.StartPage.Index })]
 [UCFComposite(typeof(Composites.SeoComposite))]

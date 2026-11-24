@@ -16,12 +16,16 @@
     <GlobalPackageReference Include="TestableIO.System.IO.Abstractions.Analyzers" Version="2022.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <PackageVersion Include="Aspire.Azure.Storage.Blobs" Version="17.0.0" />
     <PackageVersion Include="Aspire.Hosting.AppHost" Version="17.0.0" />
     <PackageVersion Include="Aspire.Hosting.Azure.Redis" Version="17.0.0" />
     <PackageVersion Include="Aspire.Hosting.Azure.Storage" Version="17.0.0" />
     <PackageVersion Include="Aspire.Hosting.Dotnet" Version="17.0.0" />
     <PackageVersion Include="Aspire.Hosting.JavaScript" Version="17.0.0" />
     <PackageVersion Include="Aspire.Hosting.SqlServer" Version="17.0.0" />
+    <PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="17.0.0" />
+    <PackageVersion Include="Aspire.StackExchange.Redis" Version="17.0.0" />
+    <PackageVersion Include="Aspire.StackExchange.Redis.DistributedCaching" Version="17.0.0" />
     <PackageVersion Include="BenchmarkDotNet" Version="0.15.8" />
     <PackageVersion Include="BenchmarkDotNet.Diagnostics.Windows" Version="0.15.8" />
     <PackageVersion Include="CommunityToolkit.Aspire.Hosting.SqlServer.Extensions" Version="17.0.0" />
@@ -44,6 +48,7 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.21.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.21.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.21.0" />
+    <PackageVersion Include="RobotsTxtCore" Version="3.0.0" />
     <PackageVersion Include="Shorthand.UmbracoCodeFirst" Version="$(UmbracoCodeFirstVersion)" />
     <PackageVersion Include="Shorthand.UmbracoCodeFirst.Analyzers" Version="$(UmbracoCodeFirstVersion)" />
     <PackageVersion Include="Shorthand.UmbracoCodeFirst.SourceGenerators" Version="$(UmbracoCodeFirstVersion)" />
@@ -58,6 +63,8 @@
     <PackageVersion Include="Umbraco.Cms.Web.Common" Version="[18.3.2, 19.0.0)" />
     <PackageVersion Include="Umbraco.Cms.Web.Website" Version="[18.3.2, 19.0.0)" />
     <PackageVersion Include="Umbraco.Cms" Version="[18.3.2, 19.0.0)" />
+    <PackageVersion Include="Umbraco.StorageProviders.AzureBlob" Version="18.1.0-rc1" />
+    <PackageVersion Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="18.1.0-rc1" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
     <PackageVersion Include="xunit.v3.mtp-v2" Version="4.0.3" />
   </ItemGroup>
