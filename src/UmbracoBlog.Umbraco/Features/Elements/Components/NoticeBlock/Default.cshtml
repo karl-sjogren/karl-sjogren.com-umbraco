@@ -1,0 +1,29 @@
+@model UmbracoBlog.Core.Elements.NoticeBlock
+
+@{
+    var typeClass = "";
+    var typeIcon = "";
+    switch (Model.Type) {
+        case "info":
+            typeClass = "notice-block-info";
+            typeIcon = "fas fa-info";
+            break;
+        case "warning":
+            typeClass = "notice-block-warning";
+            typeIcon = "fas fa-triangle-exclamation";
+            break;
+        case "error":
+            typeClass = "notice-block-error";
+            typeIcon = "fas fa-circle-exclamation";
+            break;
+        case "success":
+            typeClass = "notice-block-success";
+            typeIcon = "fas fa-circle-check";
+            break;
+    }
+}
+
+<div class="notice-block-container @typeClass">
+    <i class="@typeIcon"></i>
+    <span class="notice-block-text">@Model.Text</span>
+</div>

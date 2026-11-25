@@ -10,7 +10,11 @@
 
         <div class="code-block-title">
             <i class="fa fa-code"></i>
-            <span>@Model.Language</span>
+            @if(!string.IsNullOrWhiteSpace(Model.Filename)) {
+                <span>@Model.Filename</span>
+            } else {
+                <span>@Model.Language</span>
+            }
         </div>
 
         <button class="code-block-copy-code-button" title="Copy code">

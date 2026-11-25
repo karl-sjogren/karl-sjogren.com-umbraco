@@ -11,6 +11,10 @@ public partial class CodeBlock {
         UmbracoBlogCodingLanguageDataType.Alias)]
     public partial string Language { get; }
 
+    [UCFProperty("Filename",
+        UmbracoBlogTextDataType.Alias)]
+    public partial string Filename { get; }
+
     [UCFProperty("Code",
         UmbracoBlogCodeEditorDataType.Alias,
         LabelOnTop = true)]

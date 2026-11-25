@@ -37,6 +37,16 @@ $archive-line-color: rgb(63, 65, 68);
 $archive-marker-color: rgb(150, 152, 156);
 $archive-marker-shadow: 0 0 2px 0 #c2c6cc;
 
+// Notice block colors and styles
+$notice-block-info-background: #1d3039;
+$notice-block-info-text: #a9c5d0;
+$notice-block-warning-background: #38311f;
+$notice-block-warning-text: #d3c09a;
+$notice-block-error-background: #3b2527;
+$notice-block-error-text: #d7aaaa;
+$notice-block-success-background: #25372d;
+$notice-block-success-text: #a8c7b0;
+
 // Misc styles
 $search-hit-type-color: #4e4e4e;
 $card-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
