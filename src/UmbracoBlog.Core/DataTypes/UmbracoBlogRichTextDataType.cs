@@ -15,7 +15,7 @@ internal sealed class UmbracoBlogRichTextConfiguration : UmbracoEditors.RichText
             [
                 [TiptapToolbar.SourceEditor, TiptapToolbar.ClearFormatting],
                 [TiptapToolbar.Heading2, TiptapToolbar.Heading3, TiptapToolbar.Heading4],
-                [TiptapToolbar.Bold, TiptapToolbar.Italic, TiptapToolbar.Underline],
+                [TiptapToolbar.Bold, TiptapToolbar.Italic, TiptapToolbar.Underline, _inlineCodeToolbar],
                 [TiptapToolbar.TextAlignLeft, TiptapToolbar.TextAlignCenter, TiptapToolbar.TextAlignRight],
                 [TiptapToolbar.BulletList, TiptapToolbar.OrderedList],
                 [TiptapToolbar.Blockquote, TiptapToolbar.HorizontalRule],
@@ -28,5 +28,10 @@ internal sealed class UmbracoBlogRichTextConfiguration : UmbracoEditors.RichText
         ];
 
         Extensions!.Add(TiptapExtension.WordCount);
+        Extensions.Add(_inlineCodeExtension);
     }
+
+    // Registered by UmbracoBlog.BackofficeExtension (Client/src/tiptap-code)
+    private const string _inlineCodeExtension = "UmbracoBlog.Tiptap.Code";
+    private const string _inlineCodeToolbar = "UmbracoBlog.Tiptap.Toolbar.Code";
 }
