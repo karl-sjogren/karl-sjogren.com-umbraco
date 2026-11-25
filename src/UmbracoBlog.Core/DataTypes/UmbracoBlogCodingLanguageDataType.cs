@@ -13,12 +13,16 @@ public partial class UmbracoBlogCodingLanguageDataType;
 internal sealed class UmbracoBlogCodingLanguageConfiguration : UmbracoEditors.Dropdown.Configuration {
     public UmbracoBlogCodingLanguageConfiguration() {
         Items = JsonSerializer.SerializeToElement(new[] {
-            "csharp",
-            "javascript",
-            "typescript",
             "bash",
-            "pwsh",
+            "csharp",
+            "html",
+            "javascript",
+            "json",
             "plaintext",
+            "pwsh",
+            "razor",
+            "sass",
+            "typescript",
             "xml"
         });
     }

@@ -6,7 +6,7 @@ import {
 
 const highlighter = await createHighlighter({
   themes: ['github-dark-default'],
-  langs: ['javascript', 'csharp', 'shell', 'bash', 'plain', 'xml']
+  langs: ['javascript', 'csharp', 'shell', 'bash', 'plain', 'xml', 'css', 'sass', 'json', 'html', 'razor']
 });
 
 export default (rootElement = document.body) => {
