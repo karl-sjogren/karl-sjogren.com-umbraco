@@ -319,7 +319,7 @@ jobs:
         credentials="${credentials//\"/\\\"}"
         echo 'attempted=true' >> "$GITHUB_OUTPUT"
         printf 'user = "%s"\n' "$credentials" | curl --disable --config - \
-          --silent --show-error --fail --ssl-reqd --connect-timeout 30 --max-time 120 \
+          --silent --show-error --fail --ssl-reqd --insecure --connect-timeout 30 --max-time 120 \
           --upload-file "$RUNNER_TEMP/app_offline.htm" "ftp://$FTP_SERVER/wwwroot/app_offline.htm"
         sleep 15
 
@@ -349,8 +349,8 @@ jobs:
         credentials="${credentials//\\/\\\\}"
         credentials="${credentials//\"/\\\"}"
         if ! printf 'user = "%s"\n' "$credentials" | curl --disable --config - \
-          --silent --show-error --fail --ssl-reqd --connect-timeout 30 --max-time 120 \
+          --silent --show-error --fail --ssl-reqd --insecure --connect-timeout 30 --max-time 120 \
           --quote 'DELE wwwroot/app_offline.htm' --head "ftp://$FTP_SERVER/"; then
-          echo "::error::Could not remove wwwroot/app_offline.htm. Remove it manually to bring the site online."
+          echo "::error::Could not remove wwwroot/app_offline.htm. Check whether the site is offline and remove the file manually if needed."
           exit 1
         fi
