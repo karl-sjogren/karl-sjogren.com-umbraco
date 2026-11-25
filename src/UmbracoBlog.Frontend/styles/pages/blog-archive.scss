@@ -76,13 +76,15 @@
         width: 70px;
 
         flex-shrink: 0;
+        position: relative;
 
         &:after {
           content: '';
-          position: relative;
-          left: 20px;
+          position: absolute;
+          left: 38px;
+          top: 0.45em;
 
-          display: inline-block;
+          display: block;
           width: 8px;
           height: 8px;
 
