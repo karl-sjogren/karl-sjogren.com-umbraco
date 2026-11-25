@@ -29,6 +29,8 @@ $control-border-radius: 0.5rem;
 $sidebar-muted-color: #717070;
 $sidebar-border-color: #292929;
 $sidebar-hover-color: rgb(255, 255, 255, 0.95);
+$sidebar-link-color: #565657;
+$sidebar-link-hover-color: #8f8e8e;
 
 // Archive colors and styles
 $archive-line-color: rgb(63, 65, 68);
@@ -38,6 +40,8 @@ $archive-marker-shadow: 0 0 2px 0 #c2c6cc;
 // Misc styles
 $search-hit-type-color: #4e4e4e;
 $card-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
+$heading-anchor-color: $sidebar-muted-color;
+$heading-anchor-hover-color: $sidebar-hover-color;
 
 // Breakpoints
 $desktop-sidebar-breakpoint: 1440px;
