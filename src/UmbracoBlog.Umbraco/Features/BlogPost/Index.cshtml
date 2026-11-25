@@ -33,8 +33,16 @@
     <section class="share-buttons">
         <a class="web-share" title="Share this post" href="#"><i class="fas fa-arrow-up-from-bracket"></i></a>
         <a class="copy-link" data-clipboard-text="@Model.CanonicalUrl" title="Copy link" href="#"><i class="fas fa-link"></i></a>
-        <a class="twitter-share" title="Share on Twitter" target="_blank" rel="noopener noreferrer" href="https://x.com/intent/tweet?text=@Html.UrlEncoder.Encode(Model.ViewModel.MainHeading)&url=@Html.UrlEncoder.Encode(Model.CanonicalUrl)"><i class="fab fa-twitter"></i></a>
-        <a class="facebook-share" title="Share on Facebook" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=@Html.UrlEncoder.Encode(Model.CanonicalUrl)"><i class="fab fa-facebook"></i></a>
-        <a class="linkedin-share" title="Share on LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/shareArticle?mini=true&url=@Html.UrlEncoder.Encode(Model.CanonicalUrl)&title=@Html.UrlEncoder.Encode(Model.ViewModel.MainHeading)"><i class="fab fa-linkedin"></i></a>
+
+        @{
+            string encodedTitle = Model.ViewModel.MainHeading is not null ? Html.UrlEncoder.Encode(Model.ViewModel.MainHeading) : string.Empty;
+            string encodedUrl = Model.CanonicalUrl is not null ? Html.UrlEncoder.Encode(Model.CanonicalUrl) : string.Empty;
+        }
+
+        @if(!string.IsNullOrEmpty(encodedTitle) && !string.IsNullOrEmpty(encodedUrl)) {
+            <a class="twitter-share" title="Share on Twitter" target="_blank" rel="noopener noreferrer" href="https://x.com/intent/tweet?text=@encodedTitle&url=@encodedUrl"><i class="fab fa-twitter"></i></a>
+            <a class="facebook-share" title="Share on Facebook" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=@encodedUrl"><i class="fab fa-facebook"></i></a>
+            <a class="linkedin-share" title="Share on LinkedIn" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/shareArticle?mini=true&url=@encodedUrl&title=@encodedTitle"><i class="fab fa-linkedin"></i></a>
+        }
     </section>
 }
