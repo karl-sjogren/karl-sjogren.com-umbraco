@@ -16,7 +16,7 @@
             <meta name="robots" content="noindex, nofollow" />
         }
 
-        <title>@Model.Title</title>
+        <title>@Model.Title | @Model.SiteSettings?.SiteName</title>
         @if(!string.IsNullOrWhiteSpace(Model.MetaDescription)) {
             <meta name="description" content="@Model.MetaDescription" />
         }
