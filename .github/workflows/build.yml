@@ -290,6 +290,9 @@ jobs:
     name: Deploy to Monster
     runs-on: ubuntu-latest
     needs: net-build
+    concurrency:
+      group: deploy-monster
+      cancel-in-progress: false
 
     steps:
     - name: Download build artifacts
@@ -297,6 +300,28 @@ jobs:
       with:
         name: publish-artifacts
         path: ./artifacts
+
+    - name: Take site offline
+      id: offline
+      env:
+        FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      run: |
+        if [[ "$FTP_USERNAME" == *:* || "$FTP_USERNAME$FTP_PASSWORD" == *$'\n'* || "$FTP_USERNAME$FTP_PASSWORD" == *$'\r'* ]]; then
+          echo "::error::FTP credentials contain unsupported characters."
+          exit 1
+        fi
+
+        printf '%s\n' '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Maintenance</title></head><body><h1>Site temporarily unavailable</h1><p>Please try again shortly.</p></body></html>' > "$RUNNER_TEMP/app_offline.htm"
+        credentials="$FTP_USERNAME:$FTP_PASSWORD"
+        credentials="${credentials//\\/\\\\}"
+        credentials="${credentials//\"/\\\"}"
+        echo 'attempted=true' >> "$GITHUB_OUTPUT"
+        printf 'user = "%s"\n' "$credentials" | curl --disable --config - \
+          --silent --show-error --fail --ssl-reqd --connect-timeout 30 --max-time 120 \
+          --upload-file "$RUNNER_TEMP/app_offline.htm" "ftp://$FTP_SERVER/wwwroot/app_offline.htm"
+        sleep 15
 
     - name: Deploy files
       uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -307,3 +332,25 @@ jobs:
         protocol: ftps
         local-dir: ./artifacts/
         server-dir: ./wwwroot/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          app_offline.htm
+
+    - name: Bring site online
+      if: ${{ always() && steps.offline.outputs.attempted == 'true' }}
+      env:
+        FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      run: |
+        credentials="$FTP_USERNAME:$FTP_PASSWORD"
+        credentials="${credentials//\\/\\\\}"
+        credentials="${credentials//\"/\\\"}"
+        if ! printf 'user = "%s"\n' "$credentials" | curl --disable --config - \
+          --silent --show-error --fail --ssl-reqd --connect-timeout 30 --max-time 120 \
+          --quote 'DELE wwwroot/app_offline.htm' --head "ftp://$FTP_SERVER/"; then
+          echo "::error::Could not remove wwwroot/app_offline.htm. Remove it manually to bring the site online."
+          exit 1
+        fi
