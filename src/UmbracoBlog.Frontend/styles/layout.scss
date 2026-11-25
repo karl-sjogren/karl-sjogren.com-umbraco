@@ -65,6 +65,20 @@ main {
         }
       }
     }
+
+    // Inline code only, code inside highlighted blocks is styled by code-block.scss
+    :not(pre) > code {
+      padding: 0.1rem 0.4rem;
+
+      font-family: variables.$code-font-family;
+      font-size: 0.9rem;
+      color: variables.$inline-code-color;
+
+      background-color: variables.$surface-background;
+      border: 1px solid variables.$control-border-color;
+      border-radius: 0.25rem;
+    }
+
   }
 
   .right-panel {

@@ -295,12 +295,6 @@ jobs:
       cancel-in-progress: false
 
     steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v8
-      with:
-        name: publish-artifacts
-        path: ./artifacts
-
     - name: Take site offline
       id: offline
       env:
@@ -322,6 +316,12 @@ jobs:
           --silent --show-error --fail --ssl-reqd --insecure --connect-timeout 30 --max-time 120 \
           --upload-file "$RUNNER_TEMP/app_offline.htm" "ftp://$FTP_SERVER/wwwroot/app_offline.htm"
         sleep 15
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v8
+      with:
+        name: publish-artifacts
+        path: ./artifacts
 
     - name: Deploy files
       uses: SamKirkland/FTP-Deploy-Action@v4.4.0
