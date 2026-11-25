@@ -1,3 +1,5 @@
+@use '../variables';
+
 .blog-post {
   margin-bottom: 2rem;
 
@@ -36,6 +38,73 @@
             content: '';
           }
         }
+      }
+    }
+  }
+}
+
+.right-panel {
+  .table-of-contents {
+    margin-bottom: 2rem;
+
+    > span {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: variables.$sidebar-muted-color;
+    }
+
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+
+        a {
+          transition: color 0.3s ease-in-out;
+
+          &,
+          &:hover {
+            color: variables.$sidebar-link-color;
+            text-decoration: none;
+            border-bottom: 1px solid variables.$sidebar-link-color;
+          }
+
+          &:hover {
+            color: variables.$sidebar-link-hover-color;
+          }
+        }
+      }
+    }
+  }
+
+  .share-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    margin-top: auto;
+    padding: 2rem 0;
+
+    font-size: 1.3rem;
+    color: variables.$sidebar-muted-color;
+
+    a {
+      transition: color 0.3s ease-in-out;
+      border: none;
+
+      &,
+      &:visited,
+      &:hover,
+      &:active {
+        color: variables.$control-text-color;
+        text-decoration: none;
+      }
+
+      &:hover {
+        color: variables.$sidebar-hover-color;
       }
     }
   }
