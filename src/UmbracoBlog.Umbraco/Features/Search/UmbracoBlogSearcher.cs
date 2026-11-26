@@ -21,8 +21,6 @@ public class UmbracoBlogSearcher : Searcher, IUmbracoBlogSearcher {
     private readonly IActiveIndexManager _activeIndexManager;
     private readonly ILogger<UmbracoBlogSearcher> _logger;
 
-    //private static readonly ConcurrentDictionary<string, bool> _initializedIndexes = new();
-
     [UnsafeAccessor(UnsafeAccessorKind.StaticField, Name = "InitializedIndexes")]
     private static extern ref ConcurrentDictionary<string, bool> InitializedIndexes(Searcher @this);
 
