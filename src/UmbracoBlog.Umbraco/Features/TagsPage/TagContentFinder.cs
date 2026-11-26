@@ -8,8 +8,6 @@ using Umbraco.Cms.Core.Web;
 namespace UmbracoBlog.Umbraco.Features.TagsPage;
 
 public class TagContentFinder : IContentFinder {
-    internal const string TagRouteKey = "UmbracoBlog.TagsPage.Tag";
-
     private readonly IUmbracoContextAccessor _umbracoContextAccessor;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly IDocumentUrlService _documentUrlService;
@@ -39,16 +37,16 @@ public class TagContentFinder : IContentFinder {
         var path = request.Domain == null
             ? request.AbsolutePathDecoded
             : DomainUtilities.PathRelativeToDomain(request.Domain.Uri, request.AbsolutePathDecoded);
+
         path = path.TrimEnd('/');
         var lastSlash = path.LastIndexOf('/', StringComparison.Ordinal);
-        if(lastSlash < 0 || lastSlash == path.Length - 1) {
+        if(lastSlash < 0 || path.EndsWith('/', StringComparison.Ordinal)) {
             return Task.FromResult(false);
         }
 
         var tag = path[(lastSlash + 1)..];
         var parentPath = lastSlash == 0 ? "/" : path[..lastSlash];
-        var key = _documentUrlService.GetDocumentKeyByRoute(
-            parentPath, request.Culture, request.Domain?.ContentId, umbracoContext.InPreviewMode);
+        var key = _documentUrlService.GetDocumentKeyByRoute(parentPath, request.Culture, request.Domain?.ContentId, umbracoContext.InPreviewMode);
         if(key == null) {
             return Task.FromResult(false);
         }
@@ -59,7 +57,7 @@ public class TagContentFinder : IContentFinder {
         }
 
         request.SetPublishedContent(content);
-        httpContext.Items[TagRouteKey] = tag;
+        httpContext.SetTagSlug(tag);
         return Task.FromResult(true);
     }
 }

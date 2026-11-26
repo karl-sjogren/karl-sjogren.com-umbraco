@@ -44,7 +44,7 @@ public class TagsPageController : RenderController {
             return NotFound();
         }
 
-        if(HttpContext.Items.TryGetValue(TagContentFinder.TagRouteKey, out var tag) && tag is string tagSlug) {
+        if(HttpContext.GetTagSlug() is string tagSlug) {
             return await TagDetailsAsync(tagsPage, tagSlug);
         }
 

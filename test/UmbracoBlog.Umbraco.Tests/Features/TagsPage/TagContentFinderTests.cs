@@ -6,7 +6,6 @@ using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Routing;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
-using UmbracoBlog.Umbraco.Features.TagsPage;
 
 namespace UmbracoBlog.Umbraco.Tests.Features.TagsPage;
 
@@ -102,7 +101,7 @@ public class TagContentFinderTests {
         request.PublishedContent.ShouldBeSameAs(page);
     }
 
-    private TagContentFinder CreateFinder() => new(
+    private Umbraco.Features.TagsPage.TagContentFinder CreateFinder() => new(
         _contextAccessor,
         new HttpContextAccessor { HttpContext = _httpContext },
         _documentUrlService,
