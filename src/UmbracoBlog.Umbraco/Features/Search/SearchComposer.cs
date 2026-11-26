@@ -5,6 +5,7 @@ using Umbraco.Cms.Search.Core.DependencyInjection;
 using Umbraco.Cms.Search.Core.Services.ContentIndexing;
 using Umbraco.Cms.Search.Provider.Examine.Configuration;
 using Umbraco.Cms.Search.Provider.Examine.DependencyInjection;
+using Umbraco.Cms.Search.Provider.Examine.Services;
 
 namespace UmbracoBlog.Umbraco.Features.Search;
 
@@ -18,6 +19,8 @@ public class SearchComposer : IComposer {
             .DisableDefaultExamineIndexes();
 
         builder.Services.AddSingleton<IContentIndexer, ContentTypeAliasContentIndexer>();
+        builder.Services.AddTransient<IExamineSearcher, UmbracoBlogSearcher>();
+        builder.Services.AddTransient<IUmbracoBlogSearcher, UmbracoBlogSearcher>();
 
         // Uncomment this to clear that nasty cache that prevents us from doing stuff easily
         //builder.Services.AddHostedService<CleanSearchCachesBackgroundService>();

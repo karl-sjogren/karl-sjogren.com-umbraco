@@ -1,6 +1,6 @@
 namespace UmbracoBlog.Umbraco.Features.TagsPage;
 
-public static class HttpContextExtensions {
+public static class TagHttpContextExtensions {
     private const string _tagRouteKey = "UmbracoBlog.TagsPage.Tag";
 
     extension(HttpContext context) {

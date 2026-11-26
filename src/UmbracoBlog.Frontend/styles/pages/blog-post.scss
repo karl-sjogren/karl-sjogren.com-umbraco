@@ -41,6 +41,51 @@
       }
     }
   }
+
+  .similar-posts {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        box-sizing: border-box;
+
+        background-color: variables.$card-background;
+        border-radius: 1rem;
+        box-shadow: variables.$card-shadow;
+
+        a {
+          color: variables.$link-muted-color;
+          border-bottom: 0;
+          text-decoration: none;
+
+          &:visited,
+          &:hover,
+          &:active {
+            color: variables.$link-muted-color;
+            text-decoration: none;
+          }
+
+          &:hover {
+            color: variables.$link-muted-hover-color;
+          }
+        }
+
+        span {
+          color: #868686;
+        }
+      }
+    }
+  }
 }
 
 .right-panel {

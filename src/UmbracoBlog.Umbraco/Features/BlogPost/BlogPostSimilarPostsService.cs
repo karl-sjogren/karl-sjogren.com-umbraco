@@ -1,72 +1,55 @@
-using Examine;
-using Examine.Lucene.Providers;
-using Lucene.Net.Queries.Mlt;
-using Lucene.Net.Search;
 using Umbraco.Cms.Core;
+using Umbraco.Cms.Search.Core.Extensions;
+using Umbraco.Cms.Search.Provider.Examine.Helpers;
+using UmbracoBlog.Umbraco.Features.Search;
 
 namespace UmbracoBlog.Umbraco.Features.BlogPost;
 
 public class BlogPostSimilarPostsService : IBlogPostSimilarPostsService {
-    private readonly IExamineManager _examineManager;
+    private readonly IUmbracoBlogSearcher _searcher;
     private readonly IPublishedContentQuery _publishedContentQuery;
     private readonly ILogger<BlogPostSimilarPostsService> _logger;
 
     public BlogPostSimilarPostsService(
-            IExamineManager examineManager,
+            IUmbracoBlogSearcher searcher,
             IPublishedContentQuery publishedContentQuery,
             ILogger<BlogPostSimilarPostsService> logger) {
-        _examineManager = examineManager;
+        _searcher = searcher;
         _publishedContentQuery = publishedContentQuery;
         _logger = logger;
     }
 
     public ICollection<Core.Documents.BlogPost> GetSimilarPosts(Core.Documents.BlogPost blogPost, int maxResults) {
-        if(!_examineManager.TryGetIndex(UmbracoConstants.UmbracoIndexes.ExternalIndexName, out var index)) {
-            throw new InvalidOperationException("Failed to get Examine index.");
+        var tags = blogPost.Tags?.ToArray() ?? [];
+
+        if(tags.Length == 0) {
+            return Array.Empty<Core.Documents.BlogPost>();
         }
 
-        var searcher = (BaseLuceneSearcher)index.Searcher;
-        var searchContext = searcher.GetSearchContext();
+        var results = _searcher.SearchWithMinimumShouldMatch(
+            UmbracoSearchConstants.IndexAliases.PublishedContent,
+            accessContext: null,
+            field: Core.Documents.BlogPost.PropertyAliases.Tags,
+            values: tags,
+            minimumNumberShouldMatch: 1,
+            skip: 0,
+            take: maxResults,
+            configureQuery: query => {
+                return query
+                    .And()
+                    .Field(
+                        FieldNameHelper.FieldName("UmbracoBlog_ContentTypeAlias", "keywords"),
+                        Core.Documents.BlogPost.ModelTypeAlias)
+                    .Not()
+                    .Field(
+                        FieldNameHelper.FieldName(UmbracoSearchConstants.FieldNames.Id, "keywords"),
+                        blogPost.Key.AsKeyword());
+            }
+        );
 
-        using(var searchRef = searchContext.GetSearcher()) {
-            var luceneIndexSearcher = searchRef.IndexSearcher;
-            var moreLikeThis = new MoreLikeThis(luceneIndexSearcher.IndexReader) {
-                FieldNames = ["nodeName", "mainHeading", "tags"],
-                Analyzer = searcher.LuceneAnalyzer
-            };
-
-            var query = moreLikeThis.Like(GetDocId(blogPost));
-
-            query = new BooleanQuery {
-                { query, Occur.MUST },
-                { new TermQuery(new Lucene.Net.Index.Term("__NodeTypeAlias", Core.Documents.BlogPost.ModelTypeAlias)), Occur.MUST }
-            };
-
-            var topDocs = luceneIndexSearcher.Search(query, maxResults);
-            var similarPosts = topDocs.ScoreDocs
-                .Select(sd => _publishedContentQuery.Content(sd.Doc))
-                .OfType<Core.Documents.BlogPost>()
-                .ToArray();
-
-            return similarPosts;
-        }
-    }
-
-    private int GetDocId(Core.Documents.BlogPost blogPost) {
-        var index = _examineManager.GetIndex(UmbracoConstants.UmbracoIndexes.ExternalIndexName);
-        var searcher = (BaseLuceneSearcher)index.Searcher;
-        var searchContext = searcher.GetSearchContext();
-
-        using var searchRef = searchContext.GetSearcher();
-
-        var luceneIndexSearcher = searchRef.IndexSearcher;
-        var termQuery = new TermQuery(new Lucene.Net.Index.Term("__NodeId", blogPost.Id.ToString()));
-        var topDocs = luceneIndexSearcher.Search(termQuery, 1);
-
-        if(topDocs.ScoreDocs.Length == 0) {
-            throw new InvalidOperationException("Failed to find document for blog post.");
-        }
-
-        return topDocs.ScoreDocs[0].Doc;
+        return results.Documents
+            .Select(doc => _publishedContentQuery.Content(doc.Id))
+            .OfType<Core.Documents.BlogPost>()
+            .ToArray();
     }
 }

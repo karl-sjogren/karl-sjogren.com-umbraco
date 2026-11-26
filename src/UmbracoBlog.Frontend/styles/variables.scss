@@ -16,6 +16,8 @@ $inline-code-color: rgb(206, 145, 120);
 $link-color: rgb(138, 180, 248);
 $link-border-color: rgb(82, 108, 150);
 $link-active-color: #d2603a;
+$link-muted-color: rgb(138, 180, 248, 0.6);
+$link-muted-hover-color: rgb(138, 180, 248, 0.8);
 
 // Control colors and styles
 $control-background: #222;
@@ -52,9 +54,14 @@ $notice-block-error-text: #d7aaaa;
 $notice-block-success-background: #25372d;
 $notice-block-success-text: #a8c7b0;
 
+// Card styles
+$card-background: #1e1e1e;
+$card-border-color: #3f4144;
+$card-border-radius: 0.5rem;
+$card-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
+
 // Misc styles
 $search-hit-type-color: #4e4e4e;
-$card-shadow: rgb(21, 21, 21, 0.72) 0 6px 18px 0, rgb(137, 135, 135, 0.24) 0 0 0 1px;
 $heading-anchor-color: $sidebar-muted-color;
 $heading-anchor-hover-color: $sidebar-hover-color;
 

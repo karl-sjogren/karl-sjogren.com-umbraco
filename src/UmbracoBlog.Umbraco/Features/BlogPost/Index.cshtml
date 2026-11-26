@@ -4,15 +4,15 @@
 
 <article class="blog-post">
     <header>
-        <h2>@Model.ViewModel.BlogPost.MainHeading</h2>
+        <h2>@Model.ViewModel.Content.MainHeading</h2>
         <div class="blog-post-meta">
-            <span class="published"> <i class="fa fa-calendar"></i> <time datetime="@Model.ViewModel.BlogPost.PublishDate.ToString("yyyy-MM-dd")">@Model.ViewModel.BlogPost.PublishDate.ToString("MMMM dd, yyyy")</time> </span>
+            <span class="published"> <i class="fa fa-calendar"></i> <time datetime="@Model.ViewModel.Content.PublishDate.ToString("yyyy-MM-dd")">@Model.ViewModel.Content.PublishDate.ToString("MMMM dd, yyyy")</time> </span>
 
-            @if(Model.ViewModel.BlogPost.Tags?.Any() == true) {
+            @if(Model.ViewModel.Content.Tags?.Any() == true) {
                 <div class="tags">
                     <i class="fas fa-tags"></i>
                     <ul class="tag-list">
-                        @foreach (var tag in Model.ViewModel.BlogPost.Tags!) {
+                        @foreach (var tag in Model.ViewModel.Content.Tags!) {
                             <li>@tag</li>
                         }
                     </ul>
@@ -21,7 +21,7 @@
         </div>
     </header>
 
-    @foreach (var content in Model.ViewModel.BlogPost.MainContent!) {
+    @foreach (var content in Model.ViewModel.Content.MainContent!) {
         @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
     }
 
@@ -30,7 +30,10 @@
             <h3>Similar Posts</h3>
             <ul>
                 @foreach(var post in Model.ViewModel.SimilarPosts) {
-                    <li><a href="@post.Id">@post.MainHeading</a></li>
+                    <li>
+                        <a href="@post.Url">@post.Title</a>
+                        <span class="publish-date">@post.PublishDate.ToString("MMM dd yyyy")</span>
+                    </li>
                 }
             </ul>
         </section>
@@ -47,7 +50,7 @@
         <a class="copy-link" data-clipboard-text="@Model.CanonicalUrl" title="Copy link" href="#"><i class="fas fa-link"></i></a>
 
         @{
-            string encodedTitle = Model.ViewModel.BlogPost.MainHeading is not null ? Html.UrlEncoder.Encode(Model.ViewModel.BlogPost.MainHeading) : string.Empty;
+            string encodedTitle = Model.ViewModel.Content.MainHeading is not null ? Html.UrlEncoder.Encode(Model.ViewModel.Content.MainHeading) : string.Empty;
             string encodedUrl = Model.CanonicalUrl is not null ? Html.UrlEncoder.Encode(Model.CanonicalUrl) : string.Empty;
         }
 
