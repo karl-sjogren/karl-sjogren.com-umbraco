@@ -29,11 +29,11 @@ public class BlogPostController : RenderController {
             return NotFound();
         }
 
-        var similarPosts = _blogPostSimilarPostsService.GetSimilarPosts(blogPost, 3);
+        //var similarPosts = _blogPostSimilarPostsService.GetSimilarPosts(blogPost, 3);
 
         var viewModel = new BlogPostViewModel {
             BlogPost = blogPost,
-            SimilarPosts = similarPosts
+            SimilarPosts = []
         };
 
         var layoutViewModel = _layoutViewModelFactory.Create(viewModel, blogPost);

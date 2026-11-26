@@ -4,6 +4,8 @@ using Shorthand.UmbracoHelpers;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Search.Core.Models.Searching.Faceting;
+using Umbraco.Cms.Search.Core.Models.Searching.Filtering;
+using Umbraco.Cms.Search.Core.Models.Searching.Sorting;
 using Umbraco.Cms.Search.Core.Services;
 using Umbraco.Cms.Web.Common.Controllers;
 using UmbracoBlog.Core.Contracts;
@@ -42,6 +44,10 @@ public class TagsPageController : RenderController {
             return NotFound();
         }
 
+        if(HttpContext.Items.TryGetValue(TagContentFinder.TagRouteKey, out var tag) && tag is string tagSlug) {
+            return await TagDetailsAsync(tagsPage, tagSlug);
+        }
+
         var tags = await GetTagsAsync(cancellationToken);
 
         var viewModel = new TagsPageViewModel(tagsPage, tags);
@@ -50,13 +56,26 @@ public class TagsPageController : RenderController {
         return View(layoutViewModel);
     }
 
-    public IActionResult TagDetails(string tag) {
-        return View(tag);
+    [NonAction]
+    public async Task<IActionResult> TagDetailsAsync(Core.Documents.TagsPage tagsPage, string tag) {
+        var blogPosts = await GetBlogPostsByTagAsync(tag);
+
+        var viewModel = new TagDetailsViewModel(tagsPage, tag, blogPosts);
+
+        var layoutViewModel = _layoutViewModelFactory.Create(viewModel, tagsPage);
+        return View("Details", layoutViewModel);
     }
 
     public async Task<ICollection<TagsPageHitViewModel>> GetTagsAsync(CancellationToken cancellationToken) {
         var results = await _searcher.SearchAsync(
             indexAlias: UmbracoSearchConstants.IndexAliases.PublishedContent,
+            filters: [
+                new KeywordFilter(
+                    FieldName: "UmbracoBlog_ContentTypeAlias",
+                    Values: [Core.Documents.BlogPost.ModelTypeAlias],
+                    Negate: false
+                )
+            ],
             facets:
             [
                 new KeywordFacet(
@@ -73,5 +92,42 @@ public class TagsPageController : RenderController {
             .Select(x => new TagsPageHitViewModel(x.Key, x.Count))
             .OrderByDescending(x => x.Count)
             .ToList() ?? [];
+    }
+
+    public async Task<ICollection<TagsDetailsBlogPostViewModel>> GetBlogPostsByTagAsync(string tag) {
+        var results = await _searcher.SearchAsync(
+            indexAlias: UmbracoSearchConstants.IndexAliases.PublishedContent,
+            filters: [
+                new KeywordFilter(
+                    FieldName: Core.Documents.BlogPost.PropertyAliases.Tags,
+                    Values: [tag],
+                    Negate: false
+                ),
+                new KeywordFilter(
+                    FieldName: "UmbracoBlog_ContentTypeAlias",
+                    Values: [Core.Documents.BlogPost.ModelTypeAlias],
+                    Negate: false
+                )
+            ],
+            sorters: [
+                new DateTimeOffsetSorter(
+                    FieldName: Core.Documents.BlogPost.PropertyAliases.PublishDate,
+                    Direction: Direction.Descending
+                )
+            ]
+        );
+
+        var documents = results.Documents.Select(x => _publishedContentQuery.Content(x.Id));
+
+        var hits = documents
+            .OfType<Core.Documents.BlogPost>()
+            .Select(doc => new TagsDetailsBlogPostViewModel(
+                Title: doc.Name,
+                PublishDate: doc.PublishDate,
+                Url: _friendlyPublishedContentHelper.Url(doc)
+            ))
+            .ToList();
+
+        return hits;
     }
 }

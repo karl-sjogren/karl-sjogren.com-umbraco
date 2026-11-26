@@ -1,0 +1,16 @@
+﻿@using UmbracoBlog.Umbraco.Features.TagsPage
+@attribute [UCFTemplate("Tags Details Page")]
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<TagDetailsViewModel>>
+
+<article class="tags-details-page">
+    <h2>Blog posts tagged with "@Model.ViewModel.Tag"</h2>
+
+    <ul>
+        @foreach (var blogPost in Model.ViewModel.BlogPosts) {
+            <li>
+                <time datetime="@blogPost.PublishDate.ToString("yyyy-MM-dd")">@blogPost.PublishDate.ToString("dd MMM yyyy")</time>
+                <span><a href="@blogPost.Url">@blogPost.Title</a></span>
+            </li>
+        }
+    </ul>
+</article>
