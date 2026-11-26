@@ -1,17 +1,18 @@
-﻿@attribute [UCFTemplate("Blog Post")]
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<UmbracoBlog.Core.Documents.BlogPost>>
+﻿@using UmbracoBlog.Umbraco.Features.BlogPost
+@attribute [UCFTemplate("Blog Post")]
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<BlogPostViewModel>>
 
 <article class="blog-post">
     <header>
-        <h2>@Model.ViewModel.MainHeading</h2>
+        <h2>@Model.ViewModel.BlogPost.MainHeading</h2>
         <div class="blog-post-meta">
-            <span class="published"> <i class="fa fa-calendar"></i> <time datetime="@Model.ViewModel.PublishDate.ToString("yyyy-MM-dd")">@Model.ViewModel.PublishDate.ToString("MMMM dd, yyyy")</time> </span>
+            <span class="published"> <i class="fa fa-calendar"></i> <time datetime="@Model.ViewModel.BlogPost.PublishDate.ToString("yyyy-MM-dd")">@Model.ViewModel.BlogPost.PublishDate.ToString("MMMM dd, yyyy")</time> </span>
 
-            @if(Model.ViewModel.Tags?.Any() == true) {
+            @if(Model.ViewModel.BlogPost.Tags?.Any() == true) {
                 <div class="tags">
                     <i class="fas fa-tags"></i>
                     <ul class="tag-list">
-                        @foreach (var tag in Model.ViewModel.Tags!) {
+                        @foreach (var tag in Model.ViewModel.BlogPost.Tags!) {
                             <li>@tag</li>
                         }
                     </ul>
@@ -20,8 +21,19 @@
         </div>
     </header>
 
-    @foreach (var content in Model.ViewModel.MainContent!) {
+    @foreach (var content in Model.ViewModel.BlogPost.MainContent!) {
         @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
+    }
+
+    @if(Model.ViewModel.SimilarPosts?.Any() == true) {
+        <section class="similar-posts">
+            <h3>Similar Posts</h3>
+            <ul>
+                @foreach(var post in Model.ViewModel.SimilarPosts) {
+                    <li><a href="@post.Id">@post.MainHeading</a></li>
+                }
+            </ul>
+        </section>
     }
 </article>
 
@@ -35,7 +47,7 @@
         <a class="copy-link" data-clipboard-text="@Model.CanonicalUrl" title="Copy link" href="#"><i class="fas fa-link"></i></a>
 
         @{
-            string encodedTitle = Model.ViewModel.MainHeading is not null ? Html.UrlEncoder.Encode(Model.ViewModel.MainHeading) : string.Empty;
+            string encodedTitle = Model.ViewModel.BlogPost.MainHeading is not null ? Html.UrlEncoder.Encode(Model.ViewModel.BlogPost.MainHeading) : string.Empty;
             string encodedUrl = Model.CanonicalUrl is not null ? Html.UrlEncoder.Encode(Model.CanonicalUrl) : string.Empty;
         }
 

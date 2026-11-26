@@ -1,0 +1,632 @@
+[
+  {
+    "id": "async-cancellation",
+    "title": "Cancellation is part of an async contract",
+    "date": "2022-01-18",
+    "tags": ["C#", ".NET", "async"],
+    "paragraphs": [
+      "A cancellation token is not an emergency stop button. It is a request that each operation must observe at a safe point, particularly before starting expensive I/O.",
+      "Pass the caller's token through to database and HTTP calls, and let cancellation propagate instead of turning it into a misleading success response."
+    ],
+    "code": "await client.GetAsync(uri, cancellationToken);",
+    "codeLanguage": "csharp"
+  },
+  {
+    "id": "async-deadlines",
+    "title": "Deadlines for slow HTTP calls",
+    "date": "2022-02-08",
+    "tags": ["C#", ".NET", "async", "HTTP"],
+    "paragraphs": [
+      "An HTTP request without a deadline can occupy resources long after its caller has stopped waiting. Choose a timeout based on the experience your application can offer, not just the server's usual latency.",
+      "Combine the deadline with caller cancellation and distinguish a timeout from an intentional cancellation in your logs."
+    ]
+  },
+  {
+    "id": "async-parallelism",
+    "title": "Bounded parallelism beats a thousand tasks",
+    "date": "2022-03-15",
+    "tags": ["C#", ".NET", "async", "performance"],
+    "paragraphs": [
+      "Starting one task per item looks concise until a large batch opens too many connections. A small concurrency limit protects the remote service and keeps memory usage predictable.",
+      "Measure throughput at several limits. The fastest local run is not necessarily the best setting when many application instances share the same dependency."
+    ],
+    "code": "await Parallel.ForEachAsync(items, options, ProcessAsync);",
+    "codeLanguage": "csharp"
+  },
+  {
+    "id": "async-context",
+    "title": "Tracing an async request across services",
+    "date": "2022-04-04",
+    "tags": [".NET", "async", "observability"],
+    "paragraphs": [
+      "A request may cross a queue, an API and a database before it returns. A trace connects those steps so that a slow response can be investigated as one journey.",
+      "Keep span names stable and useful, and avoid attaching secrets or unbounded user input to attributes."
+    ]
+  },
+  {
+    "id": "async-retries",
+    "title": "Retrying asynchronous work without duplicates",
+    "date": "2022-05-12",
+    "tags": [".NET", "async", "resilience"],
+    "paragraphs": [
+      "A failed response does not always mean the server failed to process a request. Retrying a payment or a message blindly can repeat the side effect.",
+      "Use an idempotency key where the operation supports one, and retry only failures that are likely to be temporary."
+    ]
+  },
+  {
+    "id": "async-streams",
+    "title": "Streaming records with async enumeration",
+    "date": "2022-06-22",
+    "tags": ["C#", ".NET", "async", "performance"],
+    "paragraphs": [
+      "An async stream lets a consumer process records as they arrive instead of waiting for a complete collection. That can reduce peak memory for large exports.",
+      "Streaming is not free: the underlying connection may remain open while the consumer works, so cancellation and disposal still matter."
+    ]
+  },
+  {
+    "id": "sql-index-basics",
+    "title": "Reading a database index like a map",
+    "date": "2022-07-07",
+    "tags": ["SQL", "database", "performance"],
+    "paragraphs": [
+      "A database index helps locate rows without reading the whole table, but each additional index also has a cost when rows change.",
+      "Start with an actual query and its execution plan. Choose columns based on filtering and ordering rather than adding an index to every field."
+    ]
+  },
+  {
+    "id": "sql-composite-index",
+    "title": "Column order in a composite index",
+    "date": "2022-08-03",
+    "tags": ["SQL", "database", "performance"],
+    "paragraphs": [
+      "A composite index on category and publish date can help a query that filters by category and orders by date. Reversing the columns changes which access patterns it supports efficiently.",
+      "Look at the real filters, sort order and data distribution before deciding. A plausible index name is not evidence that the optimizer uses it."
+    ]
+  },
+  {
+    "id": "sql-pagination",
+    "title": "Offset and cursor pagination in a blog archive",
+    "date": "2022-09-11",
+    "tags": ["SQL", "database", "pagination"],
+    "paragraphs": [
+      "Offset pagination is easy to understand and works well for small archives, but large offsets can require the database to walk past many rows.",
+      "Cursor pagination uses the last visible sort key. Include a unique tie breaker with the publish date so that posts sharing a timestamp are not skipped."
+    ]
+  },
+  {
+    "id": "sql-transactions",
+    "title": "Keeping a transaction small",
+    "date": "2022-10-19",
+    "tags": ["SQL", "database", "reliability"],
+    "paragraphs": [
+      "A transaction should protect the changes that must succeed together, not the entire request including a slow network call.",
+      "Keep the critical section short and decide what happens when the process crashes after committing but before notifying another service."
+    ]
+  },
+  {
+    "id": "sql-query-plans",
+    "title": "When a query plan changes after launch",
+    "date": "2022-11-09",
+    "tags": ["SQL", "database", "observability"],
+    "paragraphs": [
+      "A query that was fast with a tiny development database may behave differently after months of production data. Skewed values and stale statistics can change the optimizer's choices.",
+      "Capture the slow query and compare plans before applying a fix. Measure the effect on both reads and writes."
+    ]
+  },
+  {
+    "id": "sql-null",
+    "title": "The missing value is not an empty string",
+    "date": "2022-12-13",
+    "tags": ["SQL", "database", "data modeling"],
+    "paragraphs": [
+      "A null value and an empty string can mean different things: unknown is not the same as deliberately blank. Mixing them makes filters and reports harder to explain.",
+      "Write the rule into the data model and test comparisons explicitly, especially when data enters through more than one application."
+    ]
+  },
+  {
+    "id": "search-tokenization",
+    "title": "Why search splits a phrase into tokens",
+    "date": "2023-01-16",
+    "tags": ["search", "indexing", "text"],
+    "paragraphs": [
+      "A search index usually stores terms produced by an analyzer rather than the original sentence alone. Case folding and punctuation rules decide which words become searchable.",
+      "Inspect the analyzer before tuning relevance. A query for an exact phrase and a query for any matching word may need different behavior."
+    ]
+  },
+  {
+    "id": "search-titles",
+    "title": "Should a title match outrank a body match?",
+    "date": "2023-02-06",
+    "tags": ["search", "relevance", "indexing"],
+    "paragraphs": [
+      "A title often summarizes the subject of a post, while a word in the body might only be a passing reference. Giving title matches extra weight can make results feel more useful.",
+      "Collect representative searches before changing scores. A boost that helps one query can hide a valuable article for another."
+    ]
+  },
+  {
+    "id": "search-tags",
+    "title": "Searching tags alongside article text",
+    "date": "2023-03-14",
+    "tags": ["search", "tags", "relevance"],
+    "paragraphs": [
+      "Tags provide an editorial signal that can complement full-text search. A post tagged database may be relevant even when its title uses the word SQL instead.",
+      "Normalize the tag vocabulary and decide whether a tag match should be treated as a filter, a ranking signal, or both."
+    ]
+  },
+  {
+    "id": "search-similar",
+    "title": "Finding similar posts without identical titles",
+    "date": "2023-04-17",
+    "tags": ["search", "similarity", "relevance"],
+    "paragraphs": [
+      "Related articles should share a topic without simply repeating the current title. Tags and distinctive terms provide useful clues, but very common words can overwhelm the comparison.",
+      "Exclude the current post, inspect several neighborhoods of results, and compare the suggestions against posts on unrelated subjects."
+    ]
+  },
+  {
+    "id": "search-no-results",
+    "title": "Designing a useful empty search result",
+    "date": "2023-05-02",
+    "tags": ["search", "UX", "accessibility"],
+    "paragraphs": [
+      "No results is still a result. Show the query, explain that nothing matched, and offer a way to revise the terms without losing the user's work.",
+      "Avoid implying that the index is broken when the query simply has no match. A clear empty state can make experimentation feel safe."
+    ]
+  },
+  {
+    "id": "search-reindex",
+    "title": "Rebuilding a search index after an import",
+    "date": "2023-06-08",
+    "tags": ["search", "indexing", "operations"],
+    "paragraphs": [
+      "Publishing content and finding it in search are related but separate events. Indexing may lag behind the database or fail for an individual document.",
+      "Before rebuilding everything, check indexing status and inspect a known post. A small diagnostic query can distinguish missing data from a broken analyzer."
+    ]
+  },
+  {
+    "id": "tag-vocabulary",
+    "title": "A small vocabulary for useful blog tags",
+    "date": "2023-07-20",
+    "tags": ["tags", "content", "information architecture"],
+    "paragraphs": [
+      "A tag list becomes difficult to navigate when every author invents a slightly different spelling. Decide which concepts deserve a shared label and keep the labels understandable.",
+      "A small controlled vocabulary can grow over time. Review near-duplicates before merging them, because similar words may represent distinct topics."
+    ]
+  },
+  {
+    "id": "tag-counts",
+    "title": "Counting posts for a tag overview",
+    "date": "2023-08-21",
+    "tags": ["tags", "content", "pagination"],
+    "paragraphs": [
+      "A tag overview can show readers where a blog has depth, but its counts should match the content they are allowed to see.",
+      "Count published posts rather than drafts, define how casing is handled, and order labels consistently when two tags have the same count."
+    ]
+  },
+  {
+    "id": "tag-hierarchy",
+    "title": "When tags should stay flat",
+    "date": "2023-09-05",
+    "tags": ["tags", "information architecture", "UX"],
+    "paragraphs": [
+      "A hierarchy can be useful for a large taxonomy, but many small blogs work better with a flat list of tags. Readers do not have to guess which branch contains a topic.",
+      "Start with clear names and add structure only when real navigation problems justify the extra editorial work."
+    ]
+  },
+  {
+    "id": "tag-pages",
+    "title": "Making a tag page worth visiting",
+    "date": "2023-10-23",
+    "tags": ["tags", "content", "UX"],
+    "paragraphs": [
+      "A tag page is more than a database filter. A short description can explain what the topic includes and help visitors choose between neighboring tags.",
+      "List posts in a predictable order and make the empty state useful when an editor removes the last published article."
+    ]
+  },
+  {
+    "id": "tag-renaming",
+    "title": "Renaming a tag without losing its readers",
+    "date": "2023-11-14",
+    "tags": ["tags", "content", "routing"],
+    "paragraphs": [
+      "Changing a label can affect bookmarked URLs as well as the text shown in an editor. Treat a rename as a small content migration rather than a cosmetic edit.",
+      "Keep old links working where possible, and verify that counts and search results use the new vocabulary consistently."
+    ]
+  },
+  {
+    "id": "tag-similarity",
+    "title": "Using shared tags as a similarity hint",
+    "date": "2023-12-04",
+    "tags": ["tags", "similarity", "search"],
+    "paragraphs": [
+      "Two articles sharing a specific tag are often related, but a broad tag like programming may be less informative than a narrower one.",
+      "Use tag overlap as one signal alongside titles and content. Test with articles that share one broad tag but otherwise discuss different subjects."
+    ]
+  },
+  {
+    "id": "umbraco-blocks",
+    "title": "Composing an Umbraco article from blocks",
+    "date": "2024-01-11",
+    "tags": ["Umbraco", "content", "CMS"],
+    "paragraphs": [
+      "A block list allows an editor to combine prose, code and other structured pieces in a single article. Each block has a clear job and can be rendered consistently.",
+      "Keep the available block types focused. Too many nearly identical choices make editing slower and make content harder to migrate."
+    ]
+  },
+  {
+    "id": "umbraco-publishing",
+    "title": "Drafts and published content are different views",
+    "date": "2024-02-12",
+    "tags": ["Umbraco", "CMS", "publishing"],
+    "paragraphs": [
+      "An editor may save a draft without changing what visitors see. Features that display public archives should use the published view rather than assuming every saved item is live.",
+      "Test updates, unpublishing and scheduled changes separately; each can change what belongs in a public listing."
+    ]
+  },
+  {
+    "id": "umbraco-content-model",
+    "title": "Choosing fields for a blog post model",
+    "date": "2024-03-06",
+    "tags": ["Umbraco", "CMS", "data modeling"],
+    "paragraphs": [
+      "A title, editorial date, body and tags cover many blog use cases without making every field mandatory. Separate the date shown to readers from the time the database record was created.",
+      "Model additional fields only when an editor or a feature needs them. A smaller schema is easier to explain and maintain."
+    ]
+  },
+  {
+    "id": "umbraco-import",
+    "title": "Importing content through CMS services",
+    "date": "2024-04-18",
+    "tags": ["Umbraco", "CMS", "publishing"],
+    "paragraphs": [
+      "A content import needs more than database rows. The CMS must validate properties, maintain relationships and update its published view and search index.",
+      "Use supported content APIs, keep stable import identifiers, and make retries safe so an interrupted run does not create duplicates."
+    ]
+  },
+  {
+    "id": "umbraco-navigation",
+    "title": "Building navigation from published pages",
+    "date": "2024-05-07",
+    "tags": ["Umbraco", "CMS", "navigation"],
+    "paragraphs": [
+      "Navigation should reflect the structure readers can actually visit. A hidden or unpublished page may need different treatment from an ordinary child page.",
+      "Cache thoughtfully and invalidate when editors publish changes. Stale navigation can be more confusing than a slow initial render."
+    ]
+  },
+  {
+    "id": "umbraco-preview",
+    "title": "Testing a content preview before publishing",
+    "date": "2024-06-10",
+    "tags": ["Umbraco", "CMS", "testing"],
+    "paragraphs": [
+      "Preview lets an editor review a draft in its layout before visitors see it. It is especially useful for checking headings, long code samples and links.",
+      "Keep preview authorization separate from public rendering, and check that cached public responses never accidentally include draft content."
+    ]
+  },
+  {
+    "id": "http-cache",
+    "title": "Caching an HTTP response responsibly",
+    "date": "2024-07-08",
+    "tags": ["HTTP", "caching", "performance"],
+    "paragraphs": [
+      "A cache can avoid repeated work, but only when the response is safe to share and its freshness rules are clear. Personalized content needs particular care.",
+      "Set explicit cache headers, test the behavior after publishing an update, and remember that a browser cache and a server cache are different layers."
+    ]
+  },
+  {
+    "id": "cache-invalidation",
+    "title": "Invalidating a cached blog archive",
+    "date": "2024-08-15",
+    "tags": ["caching", "content", "publishing"],
+    "paragraphs": [
+      "An archive may be inexpensive to cache until an editor publishes a new post. Without an invalidation strategy, readers can see an outdated list.",
+      "Choose between event-driven invalidation and a short lifetime based on how fresh the page must be and how reliably events reach every instance."
+    ]
+  },
+  {
+    "id": "cache-stampede",
+    "title": "Preventing a cache stampede",
+    "date": "2024-09-03",
+    "tags": ["caching", "performance", "reliability"],
+    "paragraphs": [
+      "When a popular cache entry expires, many requests can start the same expensive calculation at once. The result is a burst of load precisely when the cache was meant to help.",
+      "Coordinate refreshes where appropriate and consider serving a briefly stale value while one request rebuilds the entry."
+    ]
+  },
+  {
+    "id": "http-etags",
+    "title": "Conditional requests with entity tags",
+    "date": "2024-10-16",
+    "tags": ["HTTP", "caching", "performance"],
+    "paragraphs": [
+      "An entity tag lets a client ask whether a representation has changed. If it has not, the server can avoid sending the same response body again.",
+      "Generate the tag from the actual representation or a reliable version, and check that all fields affecting the page are included in that version."
+    ]
+  },
+  {
+    "id": "http-retries",
+    "title": "A practical guide to HTTP retry limits",
+    "date": "2024-11-11",
+    "tags": ["HTTP", "resilience", "async"],
+    "paragraphs": [
+      "A retry can recover from a brief network problem, but repeated requests can make an overloaded service struggle even more. Use a small limit and add backoff.",
+      "Check whether the operation is safe to repeat and respect a server's retry guidance. Always keep an overall deadline for the original request."
+    ]
+  },
+  {
+    "id": "http-status",
+    "title": "Choosing an HTTP status for a failed request",
+    "date": "2024-12-02",
+    "tags": ["HTTP", "API", "error handling"],
+    "paragraphs": [
+      "A status code gives clients a broad category for the outcome, while a response body can explain the specific problem. Avoid returning success for a request that failed validation.",
+      "Keep error details useful to the caller without exposing internal stack traces, credentials or other sensitive information."
+    ]
+  },
+  {
+    "id": "test-boundaries",
+    "title": "Testing behavior at a service boundary",
+    "date": "2025-01-09",
+    "tags": ["testing", ".NET", "design"],
+    "paragraphs": [
+      "A focused test can describe how a service behaves when its dependency succeeds, fails or returns no data. The useful assertion is the observable outcome, not every internal method call.",
+      "Use a real implementation where practical and a fake for expensive or nondeterministic boundaries. Keep each example readable."
+    ]
+  },
+  {
+    "id": "test-dates",
+    "title": "Making date-dependent tests predictable",
+    "date": "2025-02-14",
+    "tags": ["testing", "C#", "dates"],
+    "paragraphs": [
+      "A test that reads the current clock can fail around midnight or when it runs in another time zone. Control time explicitly when the behavior depends on it.",
+      "Include boundary cases such as a year change, and decide whether a publish date represents a local calendar day or an exact instant."
+    ]
+  },
+  {
+    "id": "test-search",
+    "title": "Search tests need more than one matching document",
+    "date": "2025-03-03",
+    "tags": ["testing", "search", "relevance"],
+    "paragraphs": [
+      "A single matching document proves little about ranking. Include close matches, partial matches and unrelated posts so a test can reveal surprising ordering.",
+      "For paging, create enough matches to cross a page boundary and check that adjacent pages do not repeat or silently omit results."
+    ]
+  },
+  {
+    "id": "test-fakes",
+    "title": "When a fake hides an integration bug",
+    "date": "2025-04-24",
+    "tags": ["testing", "integration", ".NET"],
+    "paragraphs": [
+      "A fake database or content service can make a unit test fast, but it may not reproduce serialization, validation or transaction behavior.",
+      "Keep the focused unit tests and add a small integration test for the boundary where real infrastructure has important rules."
+    ]
+  },
+  {
+    "id": "test-property",
+    "title": "Testing pagination invariants",
+    "date": "2025-05-19",
+    "tags": ["testing", "pagination", "data modeling"],
+    "paragraphs": [
+      "Paging logic has useful properties beyond one fixed example: every returned item belongs to the filtered set, ordering is stable, and neighboring pages should not overlap.",
+      "Exercise empty collections, exact page boundaries and duplicate sort values. A unique secondary key makes the expected order unambiguous."
+    ]
+  },
+  {
+    "id": "test-contracts",
+    "title": "Contract tests for a small JSON API",
+    "date": "2025-06-17",
+    "tags": ["testing", "API", "integration"],
+    "paragraphs": [
+      "A JSON API contract includes field names, status codes and the meaning of optional values. A change to any of these can surprise a client even when the server compiles.",
+      "Test a few representative requests at the HTTP boundary and avoid coupling clients to undocumented implementation details."
+    ]
+  },
+  {
+    "id": "a11y-headings",
+    "title": "Heading structure for readable articles",
+    "date": "2025-07-02",
+    "tags": ["accessibility", "HTML", "content"],
+    "paragraphs": [
+      "Headings describe the structure of an article, not just the size of its text. A clear sequence helps readers scan and helps assistive technology navigate between sections.",
+      "Choose heading levels based on the surrounding page and review the outline after composing blocks in the editor."
+    ]
+  },
+  {
+    "id": "a11y-links",
+    "title": "Writing link text that makes sense alone",
+    "date": "2025-07-28",
+    "tags": ["accessibility", "HTML", "UX"],
+    "paragraphs": [
+      "A list of links labeled read more gives little information to someone navigating links out of context. Include the article title or another meaningful destination in the accessible name.",
+      "The visible text and the accessible name should agree so that speech input users can identify the control they want."
+    ]
+  },
+  {
+    "id": "a11y-search",
+    "title": "An accessible search form starts with a label",
+    "date": "2025-08-19",
+    "tags": ["accessibility", "search", "HTML"],
+    "paragraphs": [
+      "A placeholder disappears as soon as someone types and is not a substitute for a persistent label. Give the search field a clear name and a submit button that works with a keyboard.",
+      "After submission, make the result heading and any no-results message easy to find without relying only on color."
+    ]
+  },
+  {
+    "id": "a11y-code",
+    "title": "Making code examples easier to read",
+    "date": "2025-09-09",
+    "tags": ["accessibility", "HTML", "code"],
+    "paragraphs": [
+      "A code block should preserve whitespace and remain usable when a line is wider than the screen. Syntax colors need sufficient contrast and should not be the only way to distinguish meaning.",
+      "Include a short explanation before or after the example so that the code has context even when a reader skips it."
+    ],
+    "code": "const greeting = 'Hello, reader';\nconsole.log(greeting);",
+    "codeLanguage": "javascript"
+  },
+  {
+    "id": "a11y-focus",
+    "title": "Visible focus in a keyboard journey",
+    "date": "2025-10-06",
+    "tags": ["accessibility", "CSS", "UX"],
+    "paragraphs": [
+      "Keyboard users need to see which link or control will respond to the next action. Removing the browser's focus indicator without a replacement makes navigation much harder.",
+      "Test a complete journey through navigation, search and pagination rather than checking one isolated button."
+    ]
+  },
+  {
+    "id": "a11y-pagination",
+    "title": "Pagination controls with clear names",
+    "date": "2025-11-13",
+    "tags": ["accessibility", "pagination", "UX"],
+    "paragraphs": [
+      "Page numbers need context: a link named only two is less helpful than one announced as page two. Mark the current page and keep previous and next actions predictable.",
+      "Check keyboard order and focus after a page change, especially if results update without a full navigation."
+    ]
+  },
+  {
+    "id": "js-event-loop",
+    "title": "A mental model for the JavaScript event loop",
+    "date": "2025-12-01",
+    "tags": ["JavaScript", "async", "frontend"],
+    "paragraphs": [
+      "JavaScript executes one piece of synchronous work at a time, while callbacks and promise continuations wait for an opportunity to run. Long synchronous tasks can delay user interaction.",
+      "Break large work into smaller pieces when responsiveness matters, and measure the actual delay in the browser rather than relying on assumptions."
+    ]
+  },
+  {
+    "id": "js-abort",
+    "title": "Cancelling a stale browser search",
+    "date": "2026-01-12",
+    "tags": ["JavaScript", "search", "async"],
+    "paragraphs": [
+      "When a reader types quickly, an earlier search request can finish after a later one and replace newer results. Abort the old request or ignore responses that are no longer current.",
+      "Handle intentional cancellation separately from a network failure so the interface does not show an error for normal typing."
+    ],
+    "code": "const controller = new AbortController();\nfetch(url, { signal: controller.signal });\ncontroller.abort();",
+    "codeLanguage": "javascript"
+  },
+  {
+    "id": "js-debounce",
+    "title": "Debouncing a search input",
+    "date": "2026-01-26",
+    "tags": ["JavaScript", "search", "frontend"],
+    "paragraphs": [
+      "Debouncing waits for a pause in typing before issuing a search. It reduces unnecessary requests while keeping the interface responsive to the user's final query.",
+      "A debounce does not solve out-of-order responses on its own. Combine it with cancellation or a request sequence check."
+    ]
+  },
+  {
+    "id": "js-progressive",
+    "title": "Progressive enhancement for a search page",
+    "date": "2026-02-09",
+    "tags": ["JavaScript", "search", "accessibility"],
+    "paragraphs": [
+      "A plain form can submit a search query and display results without client-side code. JavaScript can then add conveniences such as suggestions or faster updates.",
+      "Keeping the basic flow functional makes the page more resilient to script failures and easier to use with a wider range of devices."
+    ]
+  },
+  {
+    "id": "js-url-state",
+    "title": "Keeping filters in the URL",
+    "date": "2026-02-23",
+    "tags": ["JavaScript", "routing", "UX"],
+    "paragraphs": [
+      "A URL that includes the current query and page can be bookmarked, shared and revisited with the browser's back button. Hidden client state cannot offer the same affordance by itself.",
+      "Encode values using the platform URL APIs and define what happens when a parameter is missing or invalid."
+    ]
+  },
+  {
+    "id": "js-dom",
+    "title": "Avoiding unnecessary DOM work",
+    "date": "2026-03-09",
+    "tags": ["JavaScript", "frontend", "performance"],
+    "paragraphs": [
+      "Updating a result list repeatedly inside a tight loop can create needless layout work. Prepare a batch of changes and apply it once when that makes the code clearer.",
+      "Measure before optimizing. Network latency, image size or server response time may matter more than the DOM operation you first noticed."
+    ]
+  },
+  {
+    "id": "ops-logs",
+    "title": "Logs that explain an import failure",
+    "date": "2026-03-23",
+    "tags": ["observability", "operations", "reliability"],
+    "paragraphs": [
+      "An import log should identify the operation and the affected item without dumping article bodies or credentials. A clear summary helps an operator decide whether a retry is safe.",
+      "Record created, skipped and failed counts separately, and surface the original error with enough context to investigate it."
+    ]
+  },
+  {
+    "id": "ops-metrics",
+    "title": "Choosing a useful latency metric",
+    "date": "2026-04-06",
+    "tags": ["observability", "performance", "operations"],
+    "paragraphs": [
+      "An average hides the experience of slow requests. Percentiles can reveal a long tail, especially when a dependency occasionally takes much longer than usual.",
+      "Compare measurements across similar workloads and include request volume. A percentile calculated from a handful of requests can be misleading."
+    ]
+  },
+  {
+    "id": "ops-health",
+    "title": "Health checks and dependency failures",
+    "date": "2026-04-20",
+    "tags": ["observability", "operations", "reliability"],
+    "paragraphs": [
+      "A process can be running while it is unable to serve useful requests. Separate a basic liveness check from readiness checks that consider essential dependencies.",
+      "Avoid making every optional integration a reason to restart a healthy application. Design the response around what the platform should do next."
+    ]
+  },
+  {
+    "id": "ops-feature-flags",
+    "title": "A feature flag is not a cleanup plan",
+    "date": "2026-05-04",
+    "tags": ["operations", "deployment", "design"],
+    "paragraphs": [
+      "A feature flag can reduce deployment risk by allowing a change to be enabled separately from a release. It also introduces another branch that must be understood and tested.",
+      "Give temporary flags an owner and a removal condition. Otherwise old switches accumulate and make future changes harder to reason about."
+    ]
+  },
+  {
+    "id": "ops-migrations",
+    "title": "Planning a reversible schema migration",
+    "date": "2026-05-18",
+    "tags": ["database", "deployment", "operations"],
+    "paragraphs": [
+      "A schema change can affect old and new application instances during a rolling deployment. Add compatible fields first and move data before removing the old representation.",
+      "Practice the migration on a representative copy and decide how to recover if an intermediate step fails."
+    ]
+  },
+  {
+    "id": "ops-backups",
+    "title": "A backup is only useful if it can be restored",
+    "date": "2026-06-01",
+    "tags": ["database", "operations", "reliability"],
+    "paragraphs": [
+      "A successful backup job does not prove that the resulting data can be restored. Test recovery into an isolated environment and check both the database and associated media.",
+      "Document the expected recovery steps and make sure the people responsible can perform them without relying on one developer's memory."
+    ]
+  },
+  {
+    "id": "ops-release-checklist",
+    "title": "A small release checklist for a blog",
+    "date": "2026-06-15",
+    "tags": ["deployment", "testing", "operations"],
+    "paragraphs": [
+      "Before releasing a blog change, check that an article renders, the archive lists it, and search can find it. These simple journeys cover several important integrations.",
+      "Keep the checklist short enough to use consistently, then automate repeatable checks where they provide reliable feedback."
+    ]
+  },
+  {
+    "id": "search-relevance-workshop",
+    "title": "A small workshop for evaluating search relevance",
+    "date": "2026-07-06",
+    "tags": ["search", "relevance", "testing", "similarity"],
+    "paragraphs": [
+      "A relevance experiment starts with examples of what people are actually trying to find. Write down a handful of queries and the posts that would make useful answers, including a few queries that should return nothing.",
+      "Compare a title match with an article that discusses the same subject in its body. Include overlapping tags, broad programming terms and a deliberately unrelated post so that the test exposes both missed matches and false positives.",
+      "Run the same set after changing an analyzer or a field boost. Look at the first page and the next page, since a scoring improvement is not helpful if pagination repeats a result or hides a relevant document.",
+      "The goal is not to force every query into a predetermined order. Use the examples as a conversation starter, investigate surprising results and keep the dataset small enough that editors can understand it."
+    ]
+  }
+]
