@@ -25,7 +25,7 @@ public class BlogPostSimilarPostsService : IBlogPostSimilarPostsService {
             throw new InvalidOperationException("Failed to get Examine index.");
         }
 
-        var searcher = (LuceneSearcher)index.Searcher;
+        var searcher = (BaseLuceneSearcher)index.Searcher;
         var searchContext = searcher.GetSearchContext();
 
         using(var searchRef = searchContext.GetSearcher()) {
@@ -54,7 +54,7 @@ public class BlogPostSimilarPostsService : IBlogPostSimilarPostsService {
 
     private int GetDocId(Core.Documents.BlogPost blogPost) {
         var index = _examineManager.GetIndex(UmbracoConstants.UmbracoIndexes.ExternalIndexName);
-        var searcher = (LuceneSearcher)index.Searcher;
+        var searcher = (BaseLuceneSearcher)index.Searcher;
         var searchContext = searcher.GetSearchContext();
 
         using var searchRef = searchContext.GetSearcher();

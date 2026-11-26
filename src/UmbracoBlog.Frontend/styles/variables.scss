@@ -33,9 +33,14 @@ $sidebar-link-color: #565657;
 $sidebar-link-hover-color: #8f8e8e;
 
 // Archive colors and styles
-$archive-line-color: rgb(63, 65, 68);
-$archive-marker-color: rgb(150, 152, 156);
+$archive-line-color: #3f4144;
+$archive-marker-color: #96989c;
 $archive-marker-shadow: 0 0 2px 0 #c2c6cc;
+
+// Tags page colors and styles
+$tags-page-border-color: #3f4144;
+$tags-page-hover-border-color: #96989c;
+$tags-count-color: $tags-page-hover-border-color;
 
 // Notice block colors and styles
 $notice-block-info-background: #1d3039;

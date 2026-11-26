@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Using Include="Umbraco.Cms.Core.Constants" Alias="UmbracoConstants" />
+    <Using Include="Umbraco.Cms.Search.Core.Constants" Alias="UmbracoSearchConstants" />
   </ItemGroup>
 
   <!-- Force include of Vite 5 manifest -->
@@ -34,6 +35,9 @@
     <PackageReference Include="Shorthand.Vite" />
     <PackageReference Include="Umbraco.Cms" />
     <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" />
+    <PackageReference Include="Umbraco.Cms.Search.BackOffice" />
+    <PackageReference Include="Umbraco.Cms.Search.Core" />
+    <PackageReference Include="Umbraco.Cms.Search.Provider.Examine" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" />
     <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" />

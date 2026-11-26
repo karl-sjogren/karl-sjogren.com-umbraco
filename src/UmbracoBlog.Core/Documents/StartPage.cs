@@ -13,7 +13,8 @@ namespace UmbracoBlog.Core.Documents;
         BlogIndex.ModelTypeAlias,
         ContentPage.ModelTypeAlias,
         BlogArchive.ModelTypeAlias,
-        SearchPage.ModelTypeAlias
+        SearchPage.ModelTypeAlias,
+        TagsPage.ModelTypeAlias
     },
     DefaultTemplateAlias = UmbracoTemplates.StartPage.Index,
     AllowedTemplateAliases = new[] { UmbracoTemplates.StartPage.Index })]

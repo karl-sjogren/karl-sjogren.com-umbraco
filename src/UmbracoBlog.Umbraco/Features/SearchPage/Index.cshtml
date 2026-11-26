@@ -13,7 +13,7 @@
     </form>
 
     @if(Model.ViewModel.SearchHits.Any()) {
-        <h3>Results (@Model.ViewModel.SearchHits.Count)</h3>
+        <h3>Results (@Model.ViewModel.TotalHits)</h3>
 
         <ol class="search-results">
             @foreach(var hit in Model.ViewModel.SearchHits) {

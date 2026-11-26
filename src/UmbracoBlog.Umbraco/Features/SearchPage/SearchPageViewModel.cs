@@ -15,4 +15,4 @@ public class SearchPageViewModel : ViewModelBase<Core.Documents.SearchPage> {
     }
 }
 
-public record SearchPageHitViewModel(string Title, string Url, string Type, double Score);
+public record SearchPageHitViewModel(string Title, string Url, string Type);

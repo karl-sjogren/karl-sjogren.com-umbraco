@@ -1,16 +1,18 @@
-using Examine;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Shorthand.UmbracoHelpers;
 using Umbraco.Cms.Core;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
+using Umbraco.Cms.Search.Core.Models.Searching.Filtering;
+using Umbraco.Cms.Search.Core.Services;
 using Umbraco.Cms.Web.Common.Controllers;
 using UmbracoBlog.Core.Contracts;
 
 namespace UmbracoBlog.Umbraco.Features.SearchPage;
 
 public class SearchPageController : RenderController {
-    private readonly IExamineManager _examineManager;
+    private readonly ISearcher _searcher;
     private readonly IPublishedContentQuery _publishedContentQuery;
     private readonly IFriendlyPublishedContentHelper _friendlyPublishedContentHelper;
     private readonly ILayoutViewModelFactory _layoutViewModelFactory;
@@ -22,7 +24,7 @@ public class SearchPageController : RenderController {
     }.AsReadOnly();
 
     public SearchPageController(
-            IExamineManager examineManager,
+            ISearcher searcher,
             IPublishedContentQuery publishedContentQuery,
             IFriendlyPublishedContentHelper friendlyPublishedContentHelper,
             ILayoutViewModelFactory layoutViewModelFactory,
@@ -30,7 +32,7 @@ public class SearchPageController : RenderController {
             IUmbracoContextAccessor umbracoContextAccessor,
             ILogger<SearchPageController> logger)
         : base(logger, compositeViewEngine, umbracoContextAccessor) {
-        _examineManager = examineManager;
+        _searcher = searcher;
         _publishedContentQuery = publishedContentQuery;
         _friendlyPublishedContentHelper = friendlyPublishedContentHelper;
         _layoutViewModelFactory = layoutViewModelFactory;
@@ -40,13 +42,13 @@ public class SearchPageController : RenderController {
     [NonAction]
     public override IActionResult Index() => throw new NotImplementedException("Use the Index action with searchQuery and pageIndex parameters.");
 
-    public IActionResult Index([FromQuery] string searchQuery, [FromQuery] int pageIndex = 0) {
+    public async Task<IActionResult> IndexAsync([FromQuery] string searchQuery, [FromQuery] int pageIndex = 0) {
         var searchPage = CurrentPage as Core.Documents.SearchPage;
         if(searchPage == null) {
             return NotFound();
         }
 
-        var searchResults = GetSearchResults(searchQuery, pageIndex, 10, out var totalHits);
+        var (searchResults, totalHits) = await GetSearchResultsAsync(searchQuery, pageIndex, 10);
 
         var viewModel = new SearchPageViewModel(searchPage, searchQuery, searchResults, totalHits);
 
@@ -55,31 +57,30 @@ public class SearchPageController : RenderController {
         return View(layoutViewModel);
     }
 
-    public ICollection<SearchPageHitViewModel> GetSearchResults(string searchQuery, int pageIndex, int pageSize, out long totalHits) {
-        if(!_examineManager.TryGetIndex(UmbracoConstants.UmbracoIndexes.ExternalIndexName, out var index)) {
-            throw new InvalidOperationException("Failed to get Examine index.");
-        }
-
+    public async Task<(ICollection<SearchPageHitViewModel>, long)> GetSearchResultsAsync(string searchQuery, int pageIndex, int pageSize) {
         if(string.IsNullOrEmpty(searchQuery)) {
-            totalHits = 0;
-            return [];
+            return (Array.Empty<SearchPageHitViewModel>(), 0);
         }
 
-        var results = index
-            .Searcher
-            .CreateQuery("content")
-            .GroupedOr(["__NodeTypeAlias"], _searchableTypeAliases.Keys.ToArray())
-            .And()
-            .GroupedOr(["nodeName", "mainHeading", "mainContent", "tags"], searchQuery)
-            .Execute();
+        var results = await _searcher.SearchAsync(
+            indexAlias: UmbracoSearchConstants.IndexAliases.PublishedContent,
+            query: searchQuery,
+            filters: [
+                new KeywordFilter(
+                    FieldName: "UmbracoBlog_ContentTypeAlias",
+                    Values: [.. _searchableTypeAliases.Keys],
+                    Negate: false
+                ),
+            ],
+            skip: pageIndex * pageSize,
+            take: pageSize
+        );
 
-        totalHits = results.TotalItemCount;
-        var hits = results
-            .Skip(pageIndex * pageSize)
-            .Take(pageSize)
-            .Select(x => new { Id = x.Id, Type = x.Values["__NodeTypeAlias"], Score = x.Score });
+        var totalHits = results.Total;
 
-        return hits
+        var documents = results.Documents.Select(x => _publishedContentQuery.Content(x.Id));
+        var hits = documents
+            .OfType<IPublishedContent>()
             .Select(x => {
                 var content = _publishedContentQuery.Content(x.Id);
                 if(content == null) {
@@ -87,10 +88,12 @@ public class SearchPageController : RenderController {
                 }
 
                 var url = _friendlyPublishedContentHelper.Url(content);
-                var translatedType = _searchableTypeAliases.TryGetValue(x.Type, out var type) ? type : x.Type;
-                return new SearchPageHitViewModel(content.Name, url, translatedType, x.Score);
+                var translatedType = _searchableTypeAliases.TryGetValue(x.ContentType.Alias, out var type) ? type : x.ContentType.Alias;
+                return new SearchPageHitViewModel(content.Name, url, translatedType);
             })
             .OfType<SearchPageHitViewModel>()
             .ToArray();
+
+        return (hits, totalHits);
     }
 }

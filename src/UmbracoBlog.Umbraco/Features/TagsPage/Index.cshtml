@@ -1,0 +1,16 @@
+﻿@using UmbracoBlog.Umbraco.Features.TagsPage
+@attribute [UCFTemplate("Tags Page")]
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LayoutViewModel<TagsPageViewModel>>
+
+<article class="tags-page">
+    <h2>Tags</h2>
+
+    <ul>
+        @foreach (var tag in Model.ViewModel.Tags) {
+            <li>
+                <span class="tag-name"><a href="#">@tag.Name</a></span>
+                <span class="tag-count">(@tag.Count)</span>
+            </li>
+        }
+    </ul>
+</article>
