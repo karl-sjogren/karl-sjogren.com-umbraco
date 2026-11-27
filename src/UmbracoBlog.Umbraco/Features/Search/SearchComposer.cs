@@ -19,11 +19,13 @@ public class SearchComposer : IComposer {
             .DisableDefaultExamineIndexes();
 
         builder.Services.AddSingleton<IContentIndexer, ContentTypeAliasContentIndexer>();
+        builder.Services.AddSingleton<IContentIndexer, PartOfSeriesContentIndexer>();
+
         builder.Services.AddTransient<IExamineSearcher, UmbracoBlogSearcher>();
         builder.Services.AddTransient<IUmbracoBlogSearcher, UmbracoBlogSearcher>();
 
         // Uncomment this to clear that nasty cache that prevents us from doing stuff easily
-        //builder.Services.AddHostedService<CleanSearchCachesBackgroundService>();
+        builder.Services.AddHostedService<CleanSearchCachesBackgroundService>();
 
         builder.Services.Configure<FieldOptions>(options => options.Fields = [
             new() { PropertyName = Core.Documents.BlogPost.PropertyAliases.Tags, FieldValues = FieldValues.Keywords, Facetable = true },

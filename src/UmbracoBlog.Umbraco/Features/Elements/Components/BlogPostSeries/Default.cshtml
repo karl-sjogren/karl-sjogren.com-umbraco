@@ -1,0 +1,20 @@
+@model UmbracoBlog.Umbraco.Features.Elements.Components.BlogPostSeries.BlogPostSeriesViewModel
+
+@if(Model.Parts.Count < 2) {
+    return;
+}
+
+<div class="blog-post-series-container">
+    <h3 data-toc-ignore="true">@Model.Title</h3>
+    <ol>
+        @foreach(var part in Model.Parts) {
+            <li>
+                @if(part.IsCurrentPost) {
+                    <span>@part.Title</span>
+                } else {
+                    <a href="@part.Url">@part.Title</a>
+                }
+            </li>
+        }
+    </ol>
+</div>

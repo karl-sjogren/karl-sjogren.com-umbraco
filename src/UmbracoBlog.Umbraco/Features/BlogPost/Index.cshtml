@@ -21,13 +21,21 @@
         </div>
     </header>
 
+    @{
+        var partOfSeries = Model.ViewModel.Content.PartOfSeries?.FirstOrDefault();
+        if(partOfSeries is not null) {
+            @await ElementHelper.RenderViewComponentForElementAsync(partOfSeries, new { CurrentPost = Model.ViewModel.Content })
+        }
+    }
+
+
     @foreach (var content in Model.ViewModel.Content.MainContent!) {
         @await ElementHelper.RenderViewComponentForElementAsync(content.Content)
     }
 
     @if(Model.ViewModel.SimilarPosts?.Any() == true) {
         <section class="similar-posts">
-            <h3>Similar Posts</h3>
+            <h3 data-toc-ignore="true">Similar Posts</h3>
             <ul>
                 @foreach(var post in Model.ViewModel.SimilarPosts) {
                     <li>

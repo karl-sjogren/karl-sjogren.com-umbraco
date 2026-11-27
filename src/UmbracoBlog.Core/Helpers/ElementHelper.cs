@@ -1,3 +1,4 @@
+using System.Dynamic;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -46,7 +47,7 @@ public class ElementHelper : IElementHelper, IViewContextAware {
     }
 
     /// <inheritdoc />
-    public async Task<IHtmlContent> RenderViewComponentForElementAsync(IPublishedElement element) {
+    public async Task<IHtmlContent> RenderViewComponentForElementAsync(IPublishedElement element, object? args = null) {
         ArgumentNullException.ThrowIfNull(element);
         ArgumentNullException.ThrowIfNull(_viewContext);
 
@@ -54,6 +55,24 @@ public class ElementHelper : IElementHelper, IViewContextAware {
         var viewComponentHelper = _viewContext.HttpContext.RequestServices.GetRequiredService<IViewComponentHelper>();
         ((IViewContextAware)viewComponentHelper).Contextualize(_viewContext);
 
-        return await viewComponentHelper.InvokeAsync(viewComponentName, new { element });
+        return await viewComponentHelper.InvokeAsync(viewComponentName, ElementHelper.MergeArguments(new { element }, args));
+    }
+
+    internal static dynamic MergeArguments(object? item1, object? item2) {
+        if(item1 is null || item2 is null) {
+            return item1 ?? item2 ?? new ExpandoObject();
+        }
+
+        dynamic expando = new ExpandoObject();
+        var result = (IDictionary<string, object?>)expando;
+        foreach(var propertyInfo in item1.GetType().GetProperties()) {
+            result[propertyInfo.Name] = propertyInfo.GetValue(item1, null);
+        }
+
+        foreach(var propertyInfo in item2.GetType().GetProperties()) {
+            result[propertyInfo.Name] = propertyInfo.GetValue(item2, null);
+        }
+
+        return result;
     }
 }

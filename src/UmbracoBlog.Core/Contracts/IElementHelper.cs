@@ -15,6 +15,7 @@ public interface IElementHelper {
     /// Renders the view component for the specified element.
     /// </summary>
     /// <param name="element">The published element to render the view component for.</param>
+    /// <param name="args">Additional arguments to pass to the view component.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the rendered HTML content.</returns>
-    Task<IHtmlContent> RenderViewComponentForElementAsync(IPublishedElement element);
+    Task<IHtmlContent> RenderViewComponentForElementAsync(IPublishedElement element, object? args = null);
 }

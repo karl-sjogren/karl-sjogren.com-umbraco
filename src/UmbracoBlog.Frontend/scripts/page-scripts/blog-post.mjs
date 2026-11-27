@@ -62,7 +62,9 @@ export default (rootElement = document.body) => {
  * @param {HTMLElement} blogPost - The blog post element containing the headings.
  */
 function addHeadingAnchors(blogPost) {
-  const headings = blogPost.querySelectorAll('h2, h3, h4');
+  const headings = Array.from(blogPost
+    .querySelectorAll('h2, h3, h4'))
+    .filter(heading => heading.dataset.tocIgnore !== 'true');
 
   headings.forEach(heading => {
     const id = getHeadingId(heading);
@@ -83,7 +85,10 @@ function addHeadingAnchors(blogPost) {
  * @returns {HTMLElement|null} The generated table of contents as an unordered list, or null if there are fewer than 2 headings.
  */
 function generateTableOfContents(blogPost) {
-  const headings = blogPost.querySelectorAll('h2, h3, h4');
+  const headings = Array.from(blogPost
+    .querySelectorAll('h2, h3, h4'))
+    .filter(heading => heading.dataset.tocIgnore !== 'true');
+
   if(headings.length < 2) {
     return null;
   }

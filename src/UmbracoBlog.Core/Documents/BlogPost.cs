@@ -1,6 +1,7 @@
 using Shorthand.UmbracoCodeFirst;
 using Shorthand.UmbracoCodeFirst.Attributes;
 using Umbraco.Cms.Core.Models.Blocks;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using UmbracoBlog.Core.DataTypes;
 
 namespace UmbracoBlog.Core.Documents;
@@ -34,15 +35,23 @@ public partial class BlogPost {
     [UCFProperty(
         "Main content",
         UmbracoBlogPostContentDataType.Alias,
-        SortOrder = 1)]
+        SortOrder = 2)]
     [UCFDescription("The main content for the blog post.")]
     [ContentTab]
     public partial BlockListModel MainContent { get; }
 
     [UCFProperty(
+        "Part of series",
+        UmbracoBlogBlogPostSeriesPickerDataType.Alias,
+        SortOrder = 3,
+        Mandatory = true)]
+    [ContentTab]
+    public partial IEnumerable<IPublishedElement> PartOfSeries { get; }
+
+    [UCFProperty(
         "Tags",
         UmbracoBlogTagsDataType.Alias,
-        SortOrder = 2)]
+        SortOrder = 4)]
     [UCFDescription("The tags for the blog post.")]
     [ContentTab]
     public partial IEnumerable<string> Tags { get; }

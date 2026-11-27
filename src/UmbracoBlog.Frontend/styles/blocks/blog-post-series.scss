@@ -1,0 +1,47 @@
+@use '../variables';
+
+.blog-post-series-container {
+  border: 1px solid rgb(53, 75, 110);
+  background-color: rgb(24, 42, 71, 0.342);
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  border-radius: 1rem;
+
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+
+  ol {
+    list-style-type: decimal;
+
+    margin: 0;
+    padding: 0 1.5rem;
+
+    li {
+      margin-bottom: 0.25rem;
+      padding-left: 0.5rem;
+
+      a {
+        color: variables.$link-muted-color;
+        border-bottom: 0;
+        text-decoration: none;
+
+        &:visited,
+        &:hover,
+        &:active {
+          color: variables.$link-muted-color;
+          text-decoration: none;
+        }
+
+        &:hover {
+          color: variables.$link-muted-hover-color;
+        }
+      }
+
+      span {
+        color: #868686;
+      }
+    }
+  }
+}

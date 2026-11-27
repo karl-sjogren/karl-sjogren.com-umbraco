@@ -13,7 +13,7 @@ public class CleanSearchCachesBackgroundService : BackgroundService {
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken) {
         _logger.LogInformation("Starting to clean search caches...");
-        await _indexDocumentService.DeleteAllAsync();
+        //await _indexDocumentService.DeleteAllAsync();
         _logger.LogInformation("Finished cleaning search caches.");
     }
 }
