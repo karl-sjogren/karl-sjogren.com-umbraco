@@ -67,8 +67,8 @@
     <PackageVersion Include="Umbraco.Cms.Web.Common" Version="[18.3.2, 19.0.0)" />
     <PackageVersion Include="Umbraco.Cms.Web.Website" Version="[18.3.2, 19.0.0)" />
     <PackageVersion Include="Umbraco.Cms" Version="[18.3.2, 19.0.0)" />
-    <PackageVersion Include="Umbraco.StorageProviders.AzureBlob" Version="18.1.0-rc1" />
-    <PackageVersion Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="18.1.0-rc1" />
+    <PackageVersion Include="Umbraco.StorageProviders.AzureBlob" Version="18.1.0" />
+    <PackageVersion Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="18.1.0" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
     <PackageVersion Include="xunit.v3.mtp-v2" Version="4.0.3" />
   </ItemGroup>
