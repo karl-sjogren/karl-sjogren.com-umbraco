@@ -12,6 +12,11 @@ public partial class SiteSettingsElement {
         Mandatory = true)]
     public partial string SiteName { get; }
 
+    [UCFProperty("Site owner",
+        UmbracoBlogTextDataType.Alias,
+        Mandatory = true)]
+    public partial string SiteOwner { get; }
+
     [UCFProperty("Site tagline",
         UmbracoBlogTextDataType.Alias)]
     public partial string SiteTagline { get; }

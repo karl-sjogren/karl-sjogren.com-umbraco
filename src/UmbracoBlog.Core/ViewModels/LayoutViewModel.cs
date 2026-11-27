@@ -11,6 +11,7 @@ public class LayoutViewModel {
     public bool HideSidebarSearch { get; set; }
     public bool BlockSearchEngineIndexing { get; init; }
     public required SiteSettingsElement? SiteSettings { get; init; }
+    public required int CopyrightYear { get; init; }
 
     public string Title => string.IsNullOrWhiteSpace(SeoTitle) ? MetaTitle : SeoTitle;
 }

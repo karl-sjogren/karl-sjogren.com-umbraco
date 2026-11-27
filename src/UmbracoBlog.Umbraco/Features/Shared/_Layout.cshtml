@@ -84,6 +84,11 @@
         <main>
             <div class="content-wrapper">
                 @RenderBody()
+
+                <footer>
+                    <span class="copyright">&copy; @Model.CopyrightYear @Model.SiteSettings?.SiteOwner</span>
+                    <span class="generator">Powered by <a href="https://github.com/karl-sjogren/karl-sjogren.com-umbraco" target="_blank" rel="noopener noreferrer">Karls Umbraco Blog</a></span>
+                </footer>
             </div>
 
             <aside class="right-panel">

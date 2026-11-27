@@ -15,15 +15,18 @@ public class LayoutViewModelFactory : ILayoutViewModelFactory {
     private readonly IDocumentNavigationQueryService _documentNavigationQueryService;
     private readonly IUmbracoContextFactory _umbracoContextFactory;
     private readonly ILogger<LayoutViewModelFactory> _logger;
+    private readonly TimeProvider _timeProvider;
 
     public LayoutViewModelFactory(
             IFriendlyPublishedContentHelper friendlyContentHelper,
             IDocumentNavigationQueryService documentNavigationQueryService,
             IUmbracoContextFactory umbracoContextFactory,
+            TimeProvider timeProvider,
             ILogger<LayoutViewModelFactory> logger) {
         _friendlyContentHelper = friendlyContentHelper;
         _documentNavigationQueryService = documentNavigationQueryService;
         _umbracoContextFactory = umbracoContextFactory;
+        _timeProvider = timeProvider;
         _logger = logger;
     }
 
@@ -45,7 +48,8 @@ public class LayoutViewModelFactory : ILayoutViewModelFactory {
             BlockSearchEngineIndexing = blockSearchEngineIndexing,
             Url = _friendlyContentHelper.Url(publishedContent),
             CanonicalUrl = _friendlyContentHelper.Url(publishedContent, null, UrlMode.Absolute),
-            SiteSettings = GetSiteSettings(publishedContent)
+            SiteSettings = GetSiteSettings(publishedContent),
+            CopyrightYear = _timeProvider.GetUtcNow().Year
         };
     }
 

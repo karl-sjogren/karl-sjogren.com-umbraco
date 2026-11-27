@@ -1,6 +1,6 @@
-@use 'sidebar';
-@use 'variables';
-@use 'mixins';
+@use "sidebar";
+@use "variables";
+@use "mixins";
 
 body {
   font-family: variables.$body-font-family;
@@ -25,6 +25,20 @@ main {
     margin: 0;
     padding: 0 2rem;
     box-sizing: border-box;
+
+    > footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      margin-top: 2rem;
+
+      > * {
+        margin-bottom: 0.75rem;
+
+        color: variables.$footer-text-color;
+      }
+    }
   }
 
   a {
@@ -79,7 +93,9 @@ main {
         color: variables.$heading-anchor-color;
         text-decoration: none;
 
-        transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        transition:
+          color 0.3s ease-in-out,
+          opacity 0.3s ease-in-out;
 
         &:hover {
           color: variables.$heading-anchor-hover-color;
@@ -99,7 +115,6 @@ main {
       border: 1px solid variables.$control-border-color;
       border-radius: 0.25rem;
     }
-
   }
 
   .right-panel {
@@ -157,6 +172,13 @@ main {
 
 @media (width >= variables.$desktop-right-panel-breakpoint) {
   main {
+    .content-wrapper {
+      > footer {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
     .right-panel {
       display: block;
     }
