@@ -5,6 +5,7 @@ using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 using UmbracoBlog.Core.Contracts;
 using UmbracoBlog.Core.Documents;
+using UmbracoBlog.Umbraco.Features.Pagination;
 
 namespace UmbracoBlog.Umbraco.Features.StartPage;
 
@@ -31,20 +32,28 @@ public class StartPageController : RenderController {
             return NotFound();
         }
 
-        var blogPosts = GetBlogPosts(startPage);
-        var viewModel = new StartPageViewModel(startPage, blogPosts);
+        var pageNumber = HttpContext.GetCurrentPage();
+        var pageSize = 10;
+
+        var blogPosts = GetBlogPosts(startPage, pageNumber, pageSize, out var totalPosts);
+        var viewModel = new StartPageViewModel(startPage, blogPosts) {
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalPosts = totalPosts
+        };
 
         var layoutViewModel = _layoutViewModelFactory.Create(viewModel, startPage);
         return View(layoutViewModel);
     }
 
-    private ICollection<Core.Documents.BlogPost> GetBlogPosts(Core.Documents.StartPage startPage) {
+    private ICollection<Core.Documents.BlogPost> GetBlogPosts(Core.Documents.StartPage startPage, int pageNumber, int pageSize, out int totalPosts) {
         var blogIndex = _friendlyPublishedContentHelper
             .ChildrenOfType(startPage, BlogIndex.ModelTypeAlias)
             .FirstOrDefault();
 
         if(blogIndex == null) {
             _logger.LogWarning("No BlogIndex found for StartPage with ID {StartPageId}", startPage.Id);
+            totalPosts = 0;
             return [];
         }
 
@@ -54,6 +63,8 @@ public class StartPageController : RenderController {
             .OrderByDescending(x => x.PublishDate)
             .ToList();
 
-        return [.. blogPosts];
+        totalPosts = blogPosts.Count;
+
+        return blogPosts.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
     }
 }

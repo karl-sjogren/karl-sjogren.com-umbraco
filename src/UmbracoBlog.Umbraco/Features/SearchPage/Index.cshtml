@@ -23,6 +23,13 @@
                 </li>
             }
         </ol>
+
+
+        <vc:pagination
+            current-page="@Model.ViewModel.PageNumber"
+            page-size="@Model.ViewModel.PageSize"
+            total-items="@Model.ViewModel.TotalHits"
+            content="@Model.ViewModel.Content" />
     } else {
         <p>No search results found.</p>
     }

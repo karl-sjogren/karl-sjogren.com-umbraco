@@ -24,4 +24,10 @@
             </li>
         }
     </ol>
+
+    <vc:pagination
+        current-page="@Model.ViewModel.PageNumber"
+        page-size="@Model.ViewModel.PageSize"
+        total-items="@Model.ViewModel.TotalPosts"
+        content="@Model.ViewModel.Content" />
 </article>

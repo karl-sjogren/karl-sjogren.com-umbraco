@@ -1,0 +1,25 @@
+@model UmbracoBlog.Umbraco.Features.Components.Pagination.PaginationViewModel
+
+@{
+    if(Model.PageNumberLinks is null || !Model.PageNumberLinks.Any()) {
+        return;
+    }
+}
+
+<nav class="pagination">
+    <ol>
+        @foreach(var item in Model.PageNumberLinks) {
+            <li class="@item.CssClass">
+                @if(item.IsCurrent) {
+                    <span>
+                        @item.Label
+                    </span>
+                } else {
+                    <a href="@item.Url">
+                        @item.Label
+                    </a>
+                }
+            </li>
+        }
+    </ol>
+</nav>
